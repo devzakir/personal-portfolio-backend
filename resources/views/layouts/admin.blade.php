@@ -202,7 +202,7 @@
                     <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
                   </li>
                   <li class="dropdown-footer">
-                    <a href="index.html"> <i class="mdi mdi-logout"></i> Log Out </a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="mdi mdi-logout"></i> Log Out </a>                    
                   </li>
                 </ul>
               </li>
@@ -228,6 +228,11 @@
       </footer>
     </div>
   </div>
+
+  {{--  Logout Form --}}
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+  </form>
 
   <script src="{{ asset('admin') }}/assets/plugins/jquery/jquery.min.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
