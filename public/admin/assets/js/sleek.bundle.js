@@ -9864,18 +9864,18 @@
 
 	  /*======== 1. JEKYLL INSTANT SEARCH ========*/
 
-	  var searchInput = $('#search-input');
-	  if(searchInput.length != 0){
-	    SimpleJekyllSearch.init({
-	      searchInput: document.getElementById('search-input'),
-	      resultsContainer: document.getElementById('search-results'),
-	      dataSource: '/assets/data/search.json',
-	      searchResultTemplate: '<li><div class="link"><a href="{link}">{label}</a></div><div class="location">{location}</div><\/li>',
-	      noResultsText: '<li>No results found</li>',
-	      limit: 10,
-	      fuzzy: true,
-	    });
-	  }
+	  // var searchInput = $('#search-input');
+	  // if(searchInput.length != 0){
+	  //   SimpleJekyllSearch.init({
+	  //     searchInput: document.getElementById('search-input'),
+	  //     resultsContainer: document.getElementById('search-results'),
+	  //     dataSource: '/assets/data/search.json',
+	  //     searchResultTemplate: '<li><div class="link"><a href="{link}">{label}</a></div><div class="location">{location}</div><\/li>',
+	  //     noResultsText: '<li>No results found</li>',
+	  //     limit: 10,
+	  //     fuzzy: true,
+	  //   });
+	  // }
 
 
 	  /*======== 2. SCROLLBAR CONTENT ========*/
@@ -9965,38 +9965,38 @@
 
 	  /*======== 5. TOASTER ========*/
 
-	  var toaster = $('#toaster');
+	  // var toaster = $('#toaster');
 
-	  function callToaster(positionClass) {
-	    toastr.options = {
-	      closeButton: true,
-	      debug: false,
-	      newestOnTop: false,
-	      progressBar: true,
-	      positionClass: positionClass,
-	      preventDuplicates: false,
-	      onclick: null,
-	      showDuration: "300",
-	      hideDuration: "1000",
-	      timeOut: "5000",
-	      extendedTimeOut: "1000",
-	      showEasing: "swing",
-	      hideEasing: "linear",
-	      showMethod: "fadeIn",
-	      hideMethod: "fadeOut"
-	    };
-	    toastr.success("Welcome to Sleek Dashboard", "Howdy!");
-	  }
+	  // function callToaster(positionClass) {
+	  //   toastr.options = {
+	  //     closeButton: true,
+	  //     debug: false,
+	  //     newestOnTop: false,
+	  //     progressBar: true,
+	  //     positionClass: positionClass,
+	  //     preventDuplicates: false,
+	  //     onclick: null,
+	  //     showDuration: "300",
+	  //     hideDuration: "1000",
+	  //     timeOut: "5000",
+	  //     extendedTimeOut: "1000",
+	  //     showEasing: "swing",
+	  //     hideEasing: "linear",
+	  //     showMethod: "fadeIn",
+	  //     hideMethod: "fadeOut"
+	  //   };
+	  //   toastr.success("Welcome to Sleek Dashboard", "Howdy!");
+	  // }
 
-	  if(toaster.length != 0){
+	  // if(toaster.length != 0){
 	    
-	    if (document.dir != "rtl") {
-	      callToaster("toast-top-right");
-	    } else {
-	      callToaster("toast-top-left");
-	    }
+	  //   if (document.dir != "rtl") {
+	  //     callToaster("toast-top-right");
+	  //   } else {
+	  //     callToaster("toast-top-left");
+	  //   }
 
-	  }
+	  // }
 
 	  /*======== 6. PROGRESS BAR ========*/
 	  NProgress.done();
