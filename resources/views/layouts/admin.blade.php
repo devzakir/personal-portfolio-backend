@@ -27,10 +27,7 @@
   <script src="{{ asset('admin') }}/assets/plugins/nprogress/nprogress.js"></script>
 </head>
 <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
-  <script>
-    NProgress.configure({ showSpinner: false });
-    NProgress.start();
-  </script>
+  <script>NProgress.configure({ showSpinner: false }); NProgress.start(); </script>
 
   <div class="mobile-sticky-body-overlay"></div>  
   <div id="toaster"></div>
@@ -51,7 +48,7 @@
                 <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
               </g>
             </svg> --}}
-            <span class="brand-name">Sleek Dashboard</span>
+            <span class="brand-name">Admin Panel</span>
           </a>
         </div>
         <!-- begin sidebar scrollbar -->
@@ -83,21 +80,10 @@
               </li>
             
               <li  class="has-sub" >
-                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
-                  aria-expanded="false" aria-controls="charts">
-                  <i class="mdi mdi-chart-pie"></i>
-                  <span class="nav-text">Charts</span> <b class="caret"></b>
+                <a class="sidenav-item-link" href="{{ route('user.index') }}">
+                  <i class="mdi mdi-account-group"></i>
+                  <span class="nav-text">Users</span>
                 </a>
-                <ul  class="collapse"  id="charts"
-                  data-parent="#sidebar-menu">
-                  <div class="sub-menu">
-                    <li >
-                      <a class="sidenav-item-link" href="chartjs.html">
-                        <span class="nav-text">ChartJS</span>
-                      </a>
-                    </li>
-                  </div>
-                </ul>
               </li>
           </ul>
         </div>
@@ -242,7 +228,18 @@
   <script src="{{ asset('admin') }}/assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/daterangepicker/moment.min.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/daterangepicker/daterangepicker.js"></script>
-  {{-- <script src="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.js"></script> --}}
+  <script src="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.js"></script>
   <script src="{{ asset('admin') }}/assets/js/sleek.bundle.js"></script>
+  <script>
+    @if(Session::has('success'))
+        toastr.success('{{Session::get('success')}}');
+    @endif
+    @if(Session::has('info'))
+        toastr.info('{{Session::get('info')}}');
+    @endif
+    @if(Session::has('warning'))
+        toastr.warning('{{Session::get('warning')}}');
+    @endif
+  </script>
 </body>
 </html>
