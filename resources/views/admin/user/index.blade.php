@@ -13,17 +13,21 @@
           <thead class="thead-dark">
             <tr>
               <th> # </th>
-              <th> First </th>
-              <th> Last </th>
+              <th> Photo </th>
+              <th> Name </th>
+              <th> Email </th>
+              <th> Role </th>
               <th> Handle </th>
             </tr>
           </thead>
           <tbody>
             @foreach($users as $user)
             <tr>
-              <td> 1 </td>
-              <td> Lucia </td>
-              <td> Christ </td>
+              <td> {{ $user->id }} </td>
+              <td> {{ $user->name }} </td>
+              <td> {{ $user->name }} </td>
+              <td> {{ $user->profile->user_role_id }} </td>
+              <td> {{ $user->email }} </td>
               <td> 
                 <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
                 <a href="{{ route('user.show', ['id' => $user->id]) }}" class="btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\User;
 use Session;
 use Illuminate\Http\Request;
@@ -37,7 +38,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'min:8|required',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        $profile = Profile::create([
+            'user_id' => $user->id,
+            'user_role_id' => 2,
+        ]);
+        
+        Session::flash('success', 'User Profile Created Successfully');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -73,7 +92,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+        ]);
+            
         $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        // $user->password = bcrypt($request->password);
+        $user->save();
+
+        Session::flash('success', 'User Updated Successfully');
+        return redirect()->route('user.index');
         
     }
 

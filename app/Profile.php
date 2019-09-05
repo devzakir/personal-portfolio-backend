@@ -8,7 +8,7 @@ class Profile extends Model
 {
     protected $guarded = [];
 
-    public function user_role(){
-        $this->hasOne('App\UserRole', 'role_id');
+    public function role(){
+        return $this->hasOne('App\UserRole', 'role_id');
     }
 }
