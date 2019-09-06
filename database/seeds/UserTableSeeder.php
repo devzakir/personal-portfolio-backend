@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
         
         $profile = Profile::create([
             'user_id' => $user->id,
-            'user_role_id' => 1,
+            'role_id' => 1,
         ]);
     }
 }

@@ -9,6 +9,6 @@ class Profile extends Model
     protected $guarded = [];
 
     public function role(){
-        return $this->hasOne('App\UserRole', 'role_id');
+        return $this->belongsTo('App\UserRole');
     }
 }
