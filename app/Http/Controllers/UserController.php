@@ -52,7 +52,7 @@ class UserController extends Controller
 
         $profile = Profile::create([
             'user_id' => $user->id,
-            'user_role_id' => 2,
+            'role_id' => 2,
         ]);
         
         Session::flash('success', 'User Profile Created Successfully');
