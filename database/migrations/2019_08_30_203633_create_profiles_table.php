@@ -17,12 +17,11 @@ class CreateProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->BigInteger('role_id')->unsigned();
+            $table->string('avatar')->nullable();
             $table->string('photo')->nullable();
             $table->string('phone_number')->nullable();
             $table->timestamps();
             $table->foreign('role_id')->references('id')->on('user_roles');
-            // $table->foreign('user_id')->references('id')->on('main_db.users');
-
         });
     }
 

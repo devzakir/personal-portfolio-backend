@@ -16,6 +16,7 @@
   <link href="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
   <!-- SLEEK CSS -->
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/sleek.css" />
+  <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/zakir.css" />
   <!-- FAVICON -->
   <link href="{{ asset('admin') }}/assets/img/favicon.png" rel="shortcut icon" />
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -168,19 +169,27 @@
               <!-- User Account -->
               <li class="dropdown user-menu">
                 <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <img src="{{ asset('admin') }}/assets/img/user/user.png" class="user-image" alt="User Image" />
+                  @if(Auth::user()->profile->avatar)
+                      <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid user-image">
+                  @else
+                      <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid user-image">
+                  @endif
                   <span class="d-none d-lg-inline-block">{{ Auth::user()->name }}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <!-- User image -->
                   <li class="dropdown-header">
-                    <img src="{{ asset('admin') }}/assets/img/user/user.png" class="img-circle" alt="User Image" />
+                      @if(Auth::user()->profile->avatar)
+                          <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid img-circle">
+                      @else
+                          <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid img-circle">
+                      @endif
                     <div class="d-inline-block">
                         {{ Auth::user()->name }} <small class="pt-1">{{ Auth::user()->email }}</small>
                     </div>
                   </li>
                   <li>
-                    <a href="user-profile.html">
+                    <a href="{{ route('profile') }}">
                       <i class="mdi mdi-account"></i> My Profile
                     </a>
                   </li>

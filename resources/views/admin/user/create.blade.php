@@ -9,7 +9,14 @@
   <div class="card-body">
     <div class="row">
       <div class="col-4 offset-4">
-        <form action="{{ route('user.store') }}" method="post">
+        @if($errors->any())
+          <ul class="alert alert-danger">
+            @foreach($errors->all() as $error)
+            <li> {{ $error }}</li>
+            @endforeach
+          </ul>
+        @endif
+        <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label for="">Your Name</label>
@@ -23,6 +30,14 @@
             <label for="">Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
+          <div class="form-group">
+            <label for="">Avatar</label>
+            <div class="custom-file mb-1">
+              <input type="file" class="custom-file-input" name="avatar" id="coverImage" required="">
+              <label class="custom-file-label" for="coverImage">Choose file...</label>
+              <div class="invalid-feedback">Example invalid custom file feedback</div>
+            </div>
+          </div>
           <div class="form-footer pt-4 pt-5 mt-4 border-top">
             <button type="submit" class="btn btn-primary btn-default">Submit</button>
             <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
@@ -32,5 +47,4 @@
     </div>
   </div>
 </div>
- 
 @endsection

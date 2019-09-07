@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin-panel'], function () 
     Route::get('/user/delete/{id}',  'UserController@destroy')->name('user.delete');
     Route::post('/user/store',  'UserController@store')->name('user.store');
     Route::post('/user/update/{id}',  'UserController@update')->name('user.update');
+    Route::get('/profile',  'UserController@profile')->name('profile');
     
     // Resource Routes
     Route::get('/route',  'Controller@index')->name('route.index');
