@@ -25,6 +25,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  @yeild('style')
   <script src="{{ asset('admin') }}/assets/plugins/nprogress/nprogress.js"></script>
 </head>
 <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
@@ -239,6 +240,7 @@
   <script src="{{ asset('admin') }}/assets/plugins/daterangepicker/daterangepicker.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.js"></script>
   <script src="{{ asset('admin') }}/assets/js/sleek.bundle.js"></script>
+  @yeild('script')
   <script>
     @if(Session::has('success'))
         toastr.success('{{Session::get('success')}}');
