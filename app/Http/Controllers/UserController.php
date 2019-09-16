@@ -178,4 +178,31 @@ class UserController extends Controller
         $user = Auth::user();
         return view('admin.user.show', ['user' => $user]);
     }
+
+    public function edit_profile(){
+        // Auth::user()
+        return view('admin.user.profile');
+    }
+
+    public function update_profile(Request $request){
+        
+        $this->validate($request, [
+            'name' => 'required', 
+            'email' => 'required',
+            'password' => 'sometimes|required',
+            'old_password' => 'sometimes|required',
+            'avatar' => 'sometimes|image|max:2048',
+        ]);
+        
+        $user = Auth::user();
+        
+        $user->name = $request->name;
+        $user->password = bcrypt($request->password);
+        $user->profile->phone_number = $request->phone_number;
+
+        $user->save();
+
+        Session::flash('success', 'Profile Updated Successfully');
+        return redirect()->route('profile');
+    }
 }

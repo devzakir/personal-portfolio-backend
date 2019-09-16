@@ -37,6 +37,10 @@
               <h5 class="text-dark mb-1">Contact Information</h5>
               <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
               <p>{{ $user->email }}</p>
+              @if($user->profile->phone_number)
+              <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
+              <p>{{ $user->profile->phone_number }}</p>
+              @endif
               <p class="text-dark font-weight-medium pt-4 mb-2">User Role</p>
               <p> {{ $user->profile->role->name }} </p>
               <p class="text-dark font-weight-medium pt-4 mb-2">Birthday</p>

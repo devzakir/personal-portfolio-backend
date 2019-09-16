@@ -30,7 +30,7 @@
           <div class="form-group">
             <label for="">Avatar</label>
             <div class="custom-file mb-1">
-              <input type="file" class="custom-file-input" name="avatar" id="coverImage" required="">
+              <input type="file" class="custom-file-input" name="avatar" id="coverImage">
               <label class="custom-file-label" for="coverImage">Choose file...</label>
               <div class="invalid-feedback">Example invalid custom file feedback</div>
             </div>
