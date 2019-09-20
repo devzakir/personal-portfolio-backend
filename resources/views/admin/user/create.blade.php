@@ -27,6 +27,15 @@
             <input type="email" class="form-control" name="email" placeholder="Enter Email">
           </div>
           <div class="form-group">
+            <label for="roles">User Role</label>
+            <select id="roles" class="form-control" name="role" required>
+              <option value="" style="display:none" selected>Select User Role</option>
+              @foreach($roles as $role)
+              <option value="{{ $role->id }}">{{ $role->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
             <label for="">Password</label>
             <input type="password" class="form-control" name="password" placeholder="Password">
           </div>
@@ -40,7 +49,7 @@
           </div>
           <div class="form-footer pt-4 pt-5 mt-4 border-top">
             <button type="submit" class="btn btn-primary btn-default">Submit</button>
-            <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
+            <a href="{{ route('user.index') }}" class="btn btn-secondary btn-default">Cancel</a>
           </div>
         </form>
       </div>

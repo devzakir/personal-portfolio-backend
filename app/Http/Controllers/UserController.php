@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Profile;
-use App\User;
-use Session;
 use Image;
+use Session;
+use App\User;
+use App\Profile;
+use App\UserRole;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -29,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = UserRole::all();
+        return view('admin.user.create')->with('roles', $roles);
     }
 
     /**
@@ -101,7 +103,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.user.edit')->with('user', $user);
+        $roles = UserRole::all();
+        return view('admin.user.edit')->with('user', $user)->with('roles', $roles);
     }
 
     /**
@@ -114,13 +117,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-
         $this->validate($request, [
             'name' => 'required',
             'email' => "required|unique:users,email,$id",
             'avatar' => 'sometimes|image',
         ]);
-            
+
         $user->name = $request->name;
         $user->email = $request->email;
 
@@ -145,6 +147,7 @@ class UserController extends Controller
             if(file_exists(public_path($old_image))){
                 unlink(public_path($old_image));
             }
+
             $user->profile->avatar = 'storage/uploads/user/'. $image_new_name;
             $user->profile->save();
         }
@@ -153,7 +156,6 @@ class UserController extends Controller
 
         Session::flash('success', 'User Updated Successfully');
         return redirect()->route('user.index');
-        
     }
 
     /**
@@ -165,12 +167,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-
         if($user){
             $user->delete();
             Session::flash('success', 'User Deleted Successfully');
         }
-        
         return redirect()->back();
     }
 
@@ -180,12 +180,11 @@ class UserController extends Controller
     }
 
     public function edit_profile(){
-        // Auth::user()
         return view('admin.user.profile');
     }
 
     public function update_profile(Request $request){
-        
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required', 
             'email' => 'required',
@@ -195,11 +194,9 @@ class UserController extends Controller
         ]);
         
         $user = Auth::user();
-        
         $user->name = $request->name;
         $user->password = bcrypt($request->password);
         $user->profile->phone_number = $request->phone_number;
-
         $user->save();
 
         Session::flash('success', 'Profile Updated Successfully');
