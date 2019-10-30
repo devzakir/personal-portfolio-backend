@@ -188,7 +188,7 @@
   <script src="{{ asset('admin') }}/assets/plugins/daterangepicker/daterangepicker.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.js"></script>
   <script src="{{ asset('admin') }}/assets/js/sleek.bundle.js"></script>
-  @yeild('script')
+  @yield('script')
   <script>
     @if(Session::has('success'))
         toastr.success('{{Session::get('success')}}');
