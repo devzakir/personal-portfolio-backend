@@ -63,7 +63,7 @@
         <hr class="separator" />
         <div class="sidebar-footer">
           <div class="sidebar-footer-content text-center">
-            <a href="#" class="btn btn-primary">View Website</a>
+            <a href="/" target="_blank" class="btn btn-primary">View Website</a>
           </div>
         </div>
       </div>
