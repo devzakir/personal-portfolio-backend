@@ -13,6 +13,7 @@
   <link href="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/sleek.css" />
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/zakir.css" />
+  <link href="{{ asset('admin') }}/assets/img/favicon.png" rel="shortcut icon" />
   @yeild('style')
   <script src="{{ asset('admin') }}/assets/plugins/nprogress/nprogress.js"></script>
 </head>
@@ -62,7 +63,7 @@
         <hr class="separator" />
         <div class="sidebar-footer">
           <div class="sidebar-footer-content text-center">
-            <a href="/" target="_blank" class="btn btn-primary">View Website</a>
+            <a href="#" class="btn btn-primary">View Website</a>
           </div>
         </div>
       </div>
