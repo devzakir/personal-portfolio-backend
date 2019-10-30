@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin-panel'], function () {
     Route::get('/', 'DashboardController@index');
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+    Route::get('/analytics', 'DashboardController@analytics')->name('analytics');
 
     // Resource Routes
     Route::get('/user',  'UserController@index')->name('user.index');
