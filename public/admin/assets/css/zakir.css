@@ -21,3 +21,15 @@
   background-color: #dc3545;
   opacity: 1;
 }
+
+.sidebar-footer-content {
+  padding-top: 2.81rem;
+  padding-bottom: 2rem;
+  padding: 10px 0px 20px;
+}
+
+@media (min-width: 1200px) {
+  .content {
+      padding: 0rem 1.5rem 1.5rem;
+  }
+}
