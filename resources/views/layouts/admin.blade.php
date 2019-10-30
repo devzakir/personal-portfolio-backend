@@ -13,7 +13,6 @@
   <link href="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" />
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/sleek.css" />
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/zakir.css" />
-  <link href="{{ asset('admin') }}/assets/img/favicon.png" rel="shortcut icon" />
   @yeild('style')
   <script src="{{ asset('admin') }}/assets/plugins/nprogress/nprogress.js"></script>
 </head>
