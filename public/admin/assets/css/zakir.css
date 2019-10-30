@@ -1,3 +1,23 @@
 .img-fit {
   object-fit: cover;
 }
+
+#toast-container .toast-success {
+  background-color: #28a745;
+  opacity: 1;
+}
+
+#toast-container .toast-info {
+  background-color: #17a2b8;
+  opacity: 1;
+}
+
+#toast-container .toast-warning {
+  background-color: #ffc107;
+  opacity: 1;
+}
+
+#toast-container .toast-error {
+  background-color: #dc3545;
+  opacity: 1;
+}

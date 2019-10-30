@@ -9,6 +9,7 @@ use App\User;
 use App\Profile;
 use App\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -180,23 +181,62 @@ class UserController extends Controller
     }
 
     public function edit_profile(){
-        return view('admin.user.profile');
+        $user = Auth::user();
+        // return $user->profile->phone_number;
+        return view('admin.user.profile')->with('user', $user);
     }
 
     public function update_profile(Request $request){
-        dd($request->all());
+        // dd($request->all());
         $this->validate($request, [
             'name' => 'required', 
             'email' => 'required',
-            'password' => 'sometimes|required',
-            'old_password' => 'sometimes|required',
             'avatar' => 'sometimes|image|max:2048',
         ]);
         
         $user = Auth::user();
-        $user->name = $request->name;
-        $user->password = bcrypt($request->password);
-        $user->profile->phone_number = $request->phone_number;
+
+        if($request->has('name')){
+            $user->name = $request->name;
+        }
+
+        if($request->has('password')){
+            $user->password = $request->password;
+        }
+
+        if($request->has('phone_number')){
+            $user->profile->phone_number = $request->phone_number;
+        }
+
+        if($request->hasFile('avatar')){
+            $old_image = $user->profile->avatar;
+            $image = $request->avatar;
+            $image_new_name = time() . $image->getClientOriginalName();
+            $image_new_name = str_replace(" ", "_", $image_new_name);
+            $image->move('storage/uploads/user/', $image_new_name);
+            
+            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img->resize(200, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            
+            if($img->height() > 200){
+                $img->crop(200,200,0,0)->save();
+            }else {
+                $img->save();
+            }
+            
+            if($old_image){
+                if(file_exists(public_path($old_image))){
+                    unlink(public_path($old_image));
+                }
+            }
+
+            $user->profile->avatar = 'storage/uploads/user/'. $image_new_name;
+        }
+
+        $user->profile->save();
         $user->save();
 
         Session::flash('success', 'Profile Updated Successfully');

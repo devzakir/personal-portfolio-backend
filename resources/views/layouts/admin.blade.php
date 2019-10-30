@@ -199,6 +199,9 @@
     @if(Session::has('warning'))
         toastr.warning('{{Session::get('warning')}}');
     @endif
+    @if(Session::has('error'))
+        toastr.error('{{Session::get('error')}}');
+    @endif
   </script>
 </body>
 </html>

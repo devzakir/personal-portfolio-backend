@@ -18,19 +18,15 @@
           @csrf
           <div class="form-group">
             <label for="">Your Name</label>
-            <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" placeholder="Your Name">
+            <input type="text" class="form-control" name="name" value="{{ $user->name }}" placeholder="Your Name">
           </div>
           <div class="form-group">
             <label for="">Email address</label>
-            <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" placeholder="Enter Email" readonly>
+            <input type="email" class="form-control" name="email" value="{{ $user->email }}" placeholder="Enter Email" readonly>
           </div>
           <div class="form-group">
             <label for="">Phone Number</label>
-            <input type="text" class="form-control" name="phone_number" value="{{ Auth::user()->profile->phone_number }}" placeholder="Enter Phone">
-          </div>
-          <div class="form-group">
-            <label for="">Old Password</label>
-            <input type="password" class="form-control" name="old_password" placeholder="Enter Old Password">
+            <input type="text" class="form-control" name="phone_number" value="{{ $user->profile->phone_number }}" placeholder="Enter Phone">
           </div>
           <div class="form-group">
             <label for="">New Password</label>
