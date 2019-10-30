@@ -196,15 +196,15 @@ class UserController extends Controller
         
         $user = Auth::user();
 
-        if($request->has('name')){
+        if($request->name){
             $user->name = $request->name;
         }
 
-        if($request->has('password')){
+        if($request->password){
             $user->password = $request->password;
         }
 
-        if($request->has('phone_number')){
+        if($request->phone_number){
             $user->profile->phone_number = $request->phone_number;
         }
 
