@@ -40,7 +40,7 @@
             <div class="icon rounded-circle mr-4 bg-white">
                 <i class="mdi mdi-view-dashboard text-success "></i>
               </div>
-            <a href="#" class="btn btn-light">Go to Analytics</a>
+            <a href="{{ route('analytics') }}" class="btn btn-light">Go to Analytics</a>
           </div>
       </div>
     </div>
