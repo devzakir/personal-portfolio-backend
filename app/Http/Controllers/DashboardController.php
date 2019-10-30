@@ -11,6 +11,10 @@ class DashboardController extends Controller
     }
 
     public function dashboard(){
+        return view('admin.dashboard.welcome');
+    }
+
+    public function analytics(){
         return view('admin.dashboard.index');
     }
 }
