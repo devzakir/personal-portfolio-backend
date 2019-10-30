@@ -43,5 +43,4 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin-panel'], function () 
     Route::get('/route/delete/{id}',  'Controller@destroy')->name('route.delete');
     Route::post('/route/store',  'Controller@store')->name('route.store');
     Route::post('/route/update/{id}',  'Controller@update')->name('route.update');
-    
 });
