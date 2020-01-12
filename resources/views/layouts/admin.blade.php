@@ -20,7 +20,7 @@
 <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
   <script>NProgress.configure({ showSpinner: false }); NProgress.start(); </script>
 
-  <div class="mobile-sticky-body-overlay"></div>  
+  <div class="mobile-sticky-body-overlay"></div>
   <div id="toaster"></div>
   <div class="wrapper">
     <!--
@@ -49,9 +49,9 @@
             <li  class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('dashboard') }}">
                 <i class="mdi mdi-view-dashboard-outline"></i>
-                <span class="nav-text">Dashboard</span> 
+                <span class="nav-text">Dashboard</span>
               </a>
-            </li>            
+            </li>
             <li  class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('user.index') }}">
                 <i class="mdi mdi-account-group"></i>
@@ -146,7 +146,7 @@
                     <a href="{{ route('profile.edit') }}"> <i class="mdi mdi-settings"></i> Account Setting </a>
                   </li>
                   <li class="dropdown-footer">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="mdi mdi-logout"></i> Log Out </a>                    
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="mdi mdi-logout"></i> Log Out </a>
                   </li>
                 </ul>
               </li>
@@ -156,7 +156,7 @@
       </header>
 
       <div class="content-wrapper">
-        <div class="content">		
+        <div class="content">
           @yield('content')
         </div>
       </div>
@@ -187,6 +187,7 @@
   <script src="{{ asset('admin') }}/assets/plugins/daterangepicker/moment.min.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/daterangepicker/daterangepicker.js"></script>
   <script src="{{ asset('admin') }}/assets/plugins/toastr/toastr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
   <script src="{{ asset('admin') }}/assets/js/sleek.bundle.js"></script>
   @yield('script')
   <script>
@@ -202,6 +203,9 @@
     @if(Session::has('error'))
         toastr.error('{{Session::get('error')}}');
     @endif
+    $(document).ready(function () {
+        bsCustomFileInput.init()
+    });
   </script>
 </body>
 </html>
