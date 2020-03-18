@@ -59,7 +59,7 @@ class UserController extends Controller
         
         $profile = Profile::create([
             'user_id' => $user->id,
-            'role_id' => 2,
+            'role_id' => 0,
         ]);
 
         if($request->hasFile('avatar')){
