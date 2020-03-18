@@ -9,7 +9,7 @@
                 @if($user->profile->avatar)
                     <img src="{{ asset($user->profile->avatar) }}" alt="user image" class="img-fit img-fluid">
                 @else
-                    <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid">
+                    <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid">
                 @endif
               </div>
               <div class="card-body">

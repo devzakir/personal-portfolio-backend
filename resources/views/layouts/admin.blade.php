@@ -122,7 +122,7 @@
                   @if(Auth::user()->profile->avatar)
                       <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid user-image">
                   @else
-                      <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid user-image">
+                      <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid user-image">
                   @endif
                   <span class="d-none d-lg-inline-block">{{ Auth::user()->name }}</span>
                 </button>
@@ -131,7 +131,7 @@
                       @if(Auth::user()->profile->avatar)
                           <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid img-circle">
                       @else
-                          <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid img-circle">
+                          <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid img-circle">
                       @endif
                     <div class="d-inline-block">
                         {{ Auth::user()->name }} <small class="pt-1">{{ Auth::user()->email }}</small>

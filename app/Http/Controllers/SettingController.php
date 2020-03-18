@@ -87,8 +87,8 @@ class SettingController extends Controller
 
             $image = $request->logo;
             $image_new_name = time() .'.'. $image->getClientOriginalExtension();
-            $image->move('storage/uploads/setting/', $image_new_name);
-            $setting->logo = 'storage/uploads/setting/'. $image_new_name;
+            $image->move('storage/setting/', $image_new_name);
+            $setting->logo = 'storage/setting/'. $image_new_name;
             $setting->save();
 
             if($old_image){

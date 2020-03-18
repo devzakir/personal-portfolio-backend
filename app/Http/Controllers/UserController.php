@@ -66,16 +66,16 @@ class UserController extends Controller
             $image = $request->avatar;
             $image_new_name = time() . $image->getClientOriginalName();
             $image_new_name = str_replace(" ", "_", $image_new_name);
-            $image->move('storage/uploads/user/', $image_new_name);
+            $image->move('storage/user/', $image_new_name);
             
-            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $img->crop(200,200,0,0)->save();
 
-            $profile->avatar = 'storage/uploads/user/'. $image_new_name;
+            $profile->avatar = 'storage/user/'. $image_new_name;
             $profile->save();
         }
         
@@ -132,9 +132,9 @@ class UserController extends Controller
             $image = $request->avatar;
             $image_new_name = time() . $image->getClientOriginalName();
             $image_new_name = str_replace(" ", "_", $image_new_name);
-            $image->move('storage/uploads/user/', $image_new_name);
+            $image->move('storage/user/', $image_new_name);
             
-            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -149,7 +149,7 @@ class UserController extends Controller
                 unlink(public_path($old_image));
             }
 
-            $user->profile->avatar = 'storage/uploads/user/'. $image_new_name;
+            $user->profile->avatar = 'storage/user/'. $image_new_name;
             $user->profile->save();
         }
         // $user->password = bcrypt($request->password);
@@ -213,9 +213,9 @@ class UserController extends Controller
             $image = $request->avatar;
             $image_new_name = time() . $image->getClientOriginalName();
             $image_new_name = str_replace(" ", "_", $image_new_name);
-            $image->move('storage/uploads/user/', $image_new_name);
+            $image->move('storage/user/', $image_new_name);
             
-            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -233,7 +233,7 @@ class UserController extends Controller
                 }
             }
 
-            $user->profile->avatar = 'storage/uploads/user/'. $image_new_name;
+            $user->profile->avatar = 'storage/user/'. $image_new_name;
         }
 
         $user->profile->save();
