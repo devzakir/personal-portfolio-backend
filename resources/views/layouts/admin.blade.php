@@ -58,6 +58,12 @@
                 <span class="nav-text">Users</span>
               </a>
             </li>
+            <li  class="has-sub" >
+              <a class="sidenav-item-link" href="{{ route('setting.index') }}">
+                <i class="mdi mdi-settings-box"></i>
+                <span class="nav-text">Settings</span>
+              </a>
+            </li>
           </ul>
         </div>
         <hr class="separator" />
