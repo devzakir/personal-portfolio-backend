@@ -58,6 +58,12 @@
                 <span class="nav-text">Users</span>
               </a>
             </li>
+            <li  class="has-sub" >
+              <a class="sidenav-item-link" href="{{ route('setting.index') }}">
+                <i class="mdi mdi-settings-box"></i>
+                <span class="nav-text">Settings</span>
+              </a>
+            </li>
           </ul>
         </div>
         <hr class="separator" />
@@ -119,19 +125,19 @@
               <!-- User Account -->
               <li class="dropdown user-menu">
                 <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  @if(Auth::user()->profile->avatar)
-                      <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid user-image">
+                  @if(Auth::user()->avatar)
+                      <img src="{{ asset(Auth::user()->avatar) }}" alt="user image" class="img-fit img-fluid user-image">
                   @else
-                      <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid user-image">
+                      <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid user-image">
                   @endif
                   <span class="d-none d-lg-inline-block">{{ Auth::user()->name }}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                      @if(Auth::user()->profile->avatar)
-                          <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid img-circle">
+                      @if(Auth::user()->avatar)
+                          <img src="{{ asset(Auth::user()->avatar) }}" alt="user image" class="img-fit img-fluid img-circle">
                       @else
-                          <img src="{{ asset('admin') }}/assets/img/user/u6.jpg" alt="user image" class="img-fit img-fluid img-circle">
+                          <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid img-circle">
                       @endif
                     <div class="d-inline-block">
                         {{ Auth::user()->name }} <small class="pt-1">{{ Auth::user()->email }}</small>

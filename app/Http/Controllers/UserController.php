@@ -6,7 +6,6 @@ use Auth;
 use Image;
 use Session;
 use App\User;
-use App\Profile;
 use App\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -55,28 +54,24 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'role_id' => $request->role,
         ]);
         
-        $profile = Profile::create([
-            'user_id' => $user->id,
-            'role_id' => 2,
-        ]);
-
         if($request->hasFile('avatar')){
             $image = $request->avatar;
             $image_new_name = time() . $image->getClientOriginalName();
             $image_new_name = str_replace(" ", "_", $image_new_name);
-            $image->move('storage/uploads/user/', $image_new_name);
+            $image->move('storage/user/', $image_new_name);
             
-            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $img->crop(200,200,0,0)->save();
 
-            $profile->avatar = 'storage/uploads/user/'. $image_new_name;
-            $profile->save();
+            $user->avatar = 'storage/user/'. $image_new_name;
+            $user->save();
         }
         
         Session::flash('success', 'User Profile Created Successfully');
@@ -128,13 +123,13 @@ class UserController extends Controller
         $user->email = $request->email;
 
         if($request->hasFile('avatar')){
-            $old_image = $user->profile->avatar;
+            $old_image = $user->avatar;
             $image = $request->avatar;
             $image_new_name = time() . $image->getClientOriginalName();
             $image_new_name = str_replace(" ", "_", $image_new_name);
-            $image->move('storage/uploads/user/', $image_new_name);
+            $image->move('storage/user/', $image_new_name);
             
-            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -149,10 +144,15 @@ class UserController extends Controller
                 unlink(public_path($old_image));
             }
 
-            $user->profile->avatar = 'storage/uploads/user/'. $image_new_name;
-            $user->profile->save();
+            $user->avatar = 'storage/user/'. $image_new_name;
+            $user->save();
         }
-        // $user->password = bcrypt($request->password);
+        
+        $user->role_id = $request->role;
+        
+        if($request->password !== null ){
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         Session::flash('success', 'User Updated Successfully');
@@ -182,7 +182,7 @@ class UserController extends Controller
 
     public function edit_profile(){
         $user = Auth::user();
-        // return $user->profile->phone_number;
+        // return $user->phone_number;
         return view('admin.user.profile')->with('user', $user);
     }
 
@@ -205,17 +205,17 @@ class UserController extends Controller
         }
 
         if($request->phone_number){
-            $user->profile->phone_number = $request->phone_number;
+            $user->phone_number = $request->phone_number;
         }
 
         if($request->hasFile('avatar')){
-            $old_image = $user->profile->avatar;
+            $old_image = $user->avatar;
             $image = $request->avatar;
             $image_new_name = time() . $image->getClientOriginalName();
             $image_new_name = str_replace(" ", "_", $image_new_name);
-            $image->move('storage/uploads/user/', $image_new_name);
+            $image->move('storage/user/', $image_new_name);
             
-            $img = Image::make(public_path('storage/uploads/user/'. $image_new_name));
+            $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -233,10 +233,10 @@ class UserController extends Controller
                 }
             }
 
-            $user->profile->avatar = 'storage/uploads/user/'. $image_new_name;
+            $user->avatar = 'storage/user/'. $image_new_name;
         }
 
-        $user->profile->save();
+        $user->save();
         $user->save();
 
         Session::flash('success', 'Profile Updated Successfully');

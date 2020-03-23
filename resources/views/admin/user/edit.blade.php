@@ -35,6 +35,19 @@
               <div class="invalid-feedback">Example invalid custom file feedback</div>
             </div>
           </div>
+
+          <div class="form-group">
+            <label for="roles">User Role</label>
+            <select id="roles" class="form-control" name="role" required>
+              @foreach($roles as $role)
+              <option value="{{ $role->role_id }}" @if($role->role_id == $user->role_id) selected @endif>{{ $role->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+          </div>
           <div class="form-footer pt-4 pt-5 mt-4 border-top">
             <button type="submit" class="btn btn-primary btn-default">Submit</button>
             <a href="{{ route('user.index') }}" class="btn btn-secondary btn-default">Cancel</a>

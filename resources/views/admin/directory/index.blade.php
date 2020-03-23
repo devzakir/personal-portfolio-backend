@@ -19,6 +19,7 @@
             </tr>
           </thead>
           <tbody>
+            @if($users->count())
             @foreach($users as $user)
             <tr>
               <td> 1 </td>
@@ -31,6 +32,13 @@
               </td>
             </tr>
             @endforeach
+            @else 
+            <tr>
+              <td colspan="6">
+                <h5 class="text-center pt-5 pb-5">NO Post Found</h5>
+              </td>
+            </tr>
+            @endif
           </tbody>
         </table>
       </div>

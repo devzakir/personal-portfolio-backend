@@ -4,7 +4,6 @@
 <div class="card card-default">
   <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
     <h2>Edit Setting</h2>
-    <a href="{{ route('user.index') }}" class="btn btn-primary">Go Back To List</a>
   </div>
   <div class="card-body">
     <div class="row">

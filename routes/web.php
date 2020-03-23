@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin-panel'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], function () {
     Route::get('/', 'DashboardController@index');
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
     Route::get('/analytics', 'DashboardController@analytics')->name('analytics');
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin-panel'], function () 
     Route::post('/profile/update',  'UserController@update_profile')->name('profile.update');
     
     // Setting Route
-    Route::get('setting', 'SettingController@edit')->name('setting.edit');
+    Route::get('setting', 'SettingController@edit')->name('setting.index');
     Route::post('setting', 'SettingController@update')->name('setting.update');
 
     // Resource Routes

@@ -21,13 +21,14 @@
             </tr>
           </thead>
           <tbody>
+            @if($users->count())
             @foreach($users as $user)
             <tr>
               <td> {{ $user->id }} </td>
               <td> {{ $user->name }} </td>
               <td> {{ $user->name }} </td>
               <td> {{ $user->email }} </td>
-              <td> {{ $user->profile->role->name }} </td>
+              <td> {{ $user->role->name }} </td>
               <td> 
                 <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
                 <a href="{{ route('user.show', ['id' => $user->id]) }}" class="btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
@@ -35,6 +36,13 @@
               </td>
             </tr>
             @endforeach
+            @else 
+            <tr>
+              <td colspan="6">
+                <h5 class="text-center pt-5 pb-5">NO Post Found</h5>
+              </td>
+            </tr>
+            @endif
           </tbody>
         </table>
       </div>
