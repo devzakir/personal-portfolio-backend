@@ -147,7 +147,12 @@ class UserController extends Controller
             $user->avatar = 'storage/user/'. $image_new_name;
             $user->save();
         }
-        // $user->password = bcrypt($request->password);
+        
+        $user->role_id = $request->role;
+        
+        if($request->password !== null ){
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         Session::flash('success', 'User Updated Successfully');
