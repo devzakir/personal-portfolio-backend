@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin-panel'], function () 
     Route::post('/profile/update',  'UserController@update_profile')->name('profile.update');
     
     // Setting Route
-    Route::get('setting', 'SettingController@edit')->name('setting.edit');
+    Route::get('setting', 'SettingController@edit')->name('setting.index');
     Route::post('setting', 'SettingController@update')->name('setting.update');
 
     // Resource Routes
