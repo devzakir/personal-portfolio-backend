@@ -54,7 +54,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role_id' => 0,
+            'role_id' => $request->role,
         ]);
         
         if($request->hasFile('avatar')){
