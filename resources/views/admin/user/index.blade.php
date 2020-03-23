@@ -28,7 +28,7 @@
               <td> {{ $user->name }} </td>
               <td> {{ $user->name }} </td>
               <td> {{ $user->email }} </td>
-              <td> {{ $user->profile->role->name }} </td>
+              <td> {{ $user->role }} </td>
               <td> 
                 <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
                 <a href="{{ route('user.show', ['id' => $user->id]) }}" class="btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>

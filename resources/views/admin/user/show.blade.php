@@ -6,8 +6,8 @@
       <div class="profile-content-left pt-5 pb-3 px-3 px-xl-5">
           <div class="card text-center widget-profile px-0 border-0">
               <div class="card-img mx-auto rounded-circle">
-                @if($user->profile->avatar)
-                    <img src="{{ asset($user->profile->avatar) }}" alt="user image" class="img-fit img-fluid">
+                @if($user->avatar)
+                    <img src="{{ asset($user->avatar) }}" alt="user image" class="img-fit img-fluid">
                 @else
                     <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid">
                 @endif
@@ -37,12 +37,12 @@
               <h5 class="text-dark mb-1">Contact Information</h5>
               <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
               <p>{{ $user->email }}</p>
-              @if($user->profile->phone_number)
+              @if($user->phone_number)
               <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
-              <p>{{ $user->profile->phone_number }}</p>
+              <p>{{ $user->phone_number }}</p>
               @endif
               <p class="text-dark font-weight-medium pt-4 mb-2">User Role</p>
-              <p> {{ $user->profile->role->name }} </p>
+              <p> {{ $user->role->name }} </p>
               <p class="text-dark font-weight-medium pt-4 mb-2">Birthday</p>
               <p>Nov 15, 1990</p>
               <p class="text-dark font-weight-medium pt-4 mb-2">Social Profile</p>

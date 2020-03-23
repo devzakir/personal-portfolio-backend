@@ -125,8 +125,8 @@
               <!-- User Account -->
               <li class="dropdown user-menu">
                 <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  @if(Auth::user()->profile->avatar)
-                      <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid user-image">
+                  @if(Auth::user()->avatar)
+                      <img src="{{ asset(Auth::user()->avatar) }}" alt="user image" class="img-fit img-fluid user-image">
                   @else
                       <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid user-image">
                   @endif
@@ -134,8 +134,8 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown-header">
-                      @if(Auth::user()->profile->avatar)
-                          <img src="{{ asset(Auth::user()->profile->avatar) }}" alt="user image" class="img-fit img-fluid img-circle">
+                      @if(Auth::user()->avatar)
+                          <img src="{{ asset(Auth::user()->avatar) }}" alt="user image" class="img-fit img-fluid img-circle">
                       @else
                           <img src="{{ asset('storage') }}/user/user.jpg" alt="user image" class="img-fit img-fluid img-circle">
                       @endif
