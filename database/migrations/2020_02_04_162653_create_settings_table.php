@@ -19,6 +19,16 @@ class CreateSettingsTable extends Migration
             $table->string('logo')->nullable();
             $table->boolean('navbar')->default(false);
             $table->string('copyright')->nullable();
+            $table->text('about')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+            $table->string('github')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('stackoverflow')->nullable();
+            $table->string('skype')->nullable();
+            $table->string('quora')->nullable();
             $table->timestamps();
         });
     }
