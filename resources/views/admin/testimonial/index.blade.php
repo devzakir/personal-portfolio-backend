@@ -31,10 +31,13 @@
                 <td>{{$t->name}}</td>
                 <td>{{$t->designation}}</td>
                 <td>{{$t->description}}</td>
-                <td>
-                  <a href="{{ route('testimonial.edit', ['id' => $t->id]) }}" class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span> </a>
-                  <a href="#" class="btn btn-primary btn-sm"> <span class="mdi mdi-eye"></span> </a>
-                  <a href="{{ route('testimonial.destroy', ['id' => $t->id]) }}" class="btn btn-danger btn-sm"> <span class="mdi mdi-delete"></span> </a>
+                <td class="d-flex">
+                  <a href="{{ route('testimonial.edit', $t->id) }}" class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span> </a>
+                  <a href="#" class="btn btn-primary btn-sm ml-1"> <span class="mdi mdi-eye"></span> </a>
+                  <form action="{{ route('testimonial.destroy', $t->id) }}" method="post" class="ml-1">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm"> <span class="mdi mdi-delete"></span> </button>
+                  </form>
                 </td>
               </tr>
               @endforeach

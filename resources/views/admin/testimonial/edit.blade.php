@@ -19,8 +19,9 @@
                   </ul>
                 </div>
               @endif
-              <form action="{{ route('testimonial.update', ['id' => $testimonial]) }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('testimonial.update', $testimonial->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                   <label for="">Client Name</label>
                   <input type="text" name="name" value="{{ old('name', $testimonial->name) }}" class="form-control" placeholder="Client Name">

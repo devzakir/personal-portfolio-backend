@@ -52,19 +52,25 @@
                 <span class="nav-text">Dashboard</span>
               </a>
             </li>
-            <li  class="has-sub" >
+            <li class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('product.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Product</span>
               </a>
             </li>
-            <li  class="has-sub" >
+            <li class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('portfolio.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Portfolio</span>
               </a>
             </li>
-            <li  class="has-sub" >
+            <li class="has-sub" >
+              <a class="sidenav-item-link" href="{{ route('testimonial.index') }}">
+                <i class="mdi mdi-account-group"></i>
+                <span class="nav-text">Testimonial</span>
+              </a>
+            </li>
+            <li class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('user.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Users</span>

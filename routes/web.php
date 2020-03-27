@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     // portfolio
     Route::resource('portfolio', 'PortfolioController');
     Route::resource('portfolio-category', 'PortfolioCategoryController');
+
+    // testimonial
+    Route::resource('testimonial', 'TestimonialController');
     
     // Setting Route
     Route::get('setting', 'SettingController@edit')->name('setting.index');

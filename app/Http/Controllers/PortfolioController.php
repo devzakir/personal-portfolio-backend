@@ -50,7 +50,7 @@ class PortfolioController extends Controller
 
         if($request->hasFile('image')){
             $image = $request->image;
-            $image_new_name = time() .'_'. $image->getClientOriginalName();
+            $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image->move(public_path('storage/portfolio/'), $image_new_name);
         }
 
@@ -121,7 +121,7 @@ class PortfolioController extends Controller
             }
 
             $image = $request->image;
-            $image_new_name = time() .'_'. $image->getClientOriginalName();
+            $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image->move(public_path('storage/portfolio/'), $image_new_name);
             $portfolio->image = '/storage/portfolio/' . $image_new_name;
         }

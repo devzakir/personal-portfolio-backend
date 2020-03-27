@@ -53,7 +53,7 @@ class TestimonialController extends Controller
 
         if($request->hasFile('avatar')){
             $image = $request->avatar;
-            $image_new_name = time() . '_' . $image->getClientOriginalName();
+            $image_new_name = time() . '_.' . $image->getClientOriginalExtension();
             $image->move(public_path('/storage/testimonial/'), $image_new_name);
             $testimonial->avatar = '/storage/testimonial/' . $image_new_name;
             $testimonial->save();
@@ -99,7 +99,7 @@ class TestimonialController extends Controller
             'name' => 'required',
             'designation' => 'required',
             'description' => 'required',
-            'avatar' => 'required|image|max:2048',
+            'avatar' => 'sometimes|image|max:2048',
         ]);
 
         $testimonial->name = $request->name;
@@ -108,7 +108,7 @@ class TestimonialController extends Controller
 
         if($request->hasFile('avatar')){
             $image = $request->avatar;
-            $image_new_name = time() . '_' . $image->getClientOriginalName();
+            $image_new_name = time() . '_.' . $image->getClientOriginalExtension();
             $image->move(public_path('/storage/testimonial/'), $image_new_name);
             $testimonial->avatar = '/storage/testimonial/' . $image_new_name;
         }
@@ -128,7 +128,7 @@ class TestimonialController extends Controller
     {
         if($testimonial){
             if(file_exists(public_path($testimonial->avatar))){
-                unlink($testimonial->avatar);
+                unlink(public_path($testimonial->avatar));
             }
             $testimonial->delete();
         }

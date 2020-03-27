@@ -59,7 +59,7 @@ class UserController extends Controller
         
         if($request->hasFile('avatar')){
             $image = $request->avatar;
-            $image_new_name = time() . $image->getClientOriginalName();
+            $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image_new_name = str_replace(" ", "_", $image_new_name);
             $image->move('storage/user/', $image_new_name);
             
@@ -125,7 +125,7 @@ class UserController extends Controller
         if($request->hasFile('avatar')){
             $old_image = $user->avatar;
             $image = $request->avatar;
-            $image_new_name = time() . $image->getClientOriginalName();
+            $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image_new_name = str_replace(" ", "_", $image_new_name);
             $image->move('storage/user/', $image_new_name);
             
@@ -211,7 +211,7 @@ class UserController extends Controller
         if($request->hasFile('avatar')){
             $old_image = $user->avatar;
             $image = $request->avatar;
-            $image_new_name = time() . $image->getClientOriginalName();
+            $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image_new_name = str_replace(" ", "_", $image_new_name);
             $image->move('storage/user/', $image_new_name);
             
