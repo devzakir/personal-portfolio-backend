@@ -51,7 +51,7 @@ class PortfolioController extends Controller
         if($request->hasFile('image')){
             $image = $request->image;
             $image_new_name = time() .'_'. $image->getClientOriginalName();
-            $image->move(public_path('uploads/portfolio/'), $image_new_name);
+            $image->move(public_path('storage/portfolio/'), $image_new_name);
         }
 
         $portfolio = Portfolio::create([
@@ -60,7 +60,7 @@ class PortfolioController extends Controller
             'category_id' => $request->category_id,
             'link' => $request->link,
             'description' => $request->description,
-            'image' => '/uploads/portfolio/' . $image_new_name,
+            'image' => '/storage/portfolio/' . $image_new_name,
             'category_name' => PortfolioCategory::find($request->category_id)->name,
         ]);
 
@@ -122,8 +122,8 @@ class PortfolioController extends Controller
 
             $image = $request->image;
             $image_new_name = time() .'_'. $image->getClientOriginalName();
-            $image->move(public_path('uploads/portfolio/'), $image_new_name);
-            $portfolio->image = '/uploads/portfolio/' . $image_new_name;
+            $image->move(public_path('storage/portfolio/'), $image_new_name);
+            $portfolio->image = '/storage/portfolio/' . $image_new_name;
         }
         $portfolio->save();
 
