@@ -21,9 +21,9 @@
               @endif
             </div>
           </div>
-          <form action="{{ route('product.update', ['id' => $product->id]) }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
@@ -41,8 +41,8 @@
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <label for="category_id">Product Category</label>
-                  <select name="category_id" id="category_id" class="form-control">
+                  <label for="category">Product Category</label>
+                  <select name="category" id="category" class="form-control">
                     @foreach($categories as $c)
                       <option value="{{ $c->id }}" @if($product->category_id == $c->id) selected @endif>{{$c->name}}</option>
                     @endforeach

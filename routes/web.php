@@ -35,6 +35,14 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     Route::get('/profile',  'UserController@profile')->name('profile');
     Route::get('/profile/edit',  'UserController@edit_profile')->name('profile.edit');
     Route::post('/profile/update',  'UserController@update_profile')->name('profile.update');
+
+    // product 
+    Route::resource('product', 'ProductController');
+    Route::resource('product-category', 'ProductCategoryController');
+
+    // portfolio
+    Route::resource('portfolio', 'PortfolioController');
+    Route::resource('portfolio-category', 'PortfolioCategoryController');
     
     // Setting Route
     Route::get('setting', 'SettingController@edit')->name('setting.index');

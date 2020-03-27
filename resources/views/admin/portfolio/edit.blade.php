@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-6 offset-3">
-              <form action="{{ route('portfolio.update', ['id' => $portfolio->id]) }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('portfolio.update', $portfolio->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @if ($errors->any())
                   <div class="alert alert-danger">

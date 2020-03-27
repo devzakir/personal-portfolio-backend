@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use App\PortfolioCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PortfolioCategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class PortfolioCategoryController extends Controller
     public function index()
     {
         $categories = PortfolioCategory::orderBy('created_at', 'desc')->paginate(20);
-        return view('admin.portfolio-category.index', ['categories' => $categories]);
+        return view('admin.portfolio-category.index', compact('categories'));
     }
 
     /**
@@ -43,11 +44,11 @@ class PortfolioCategoryController extends Controller
 
         $category = PortfolioCategory::create([
             'name' => $request->name,
-            'slug' => str_slug($request->name),
+            'slug' => Str::slug($request->name),
         ]);
 
-        Session::flash('success', 'Portfolio Category Created Successfully');
-        return redirect()->route('portfolio.category.index');
+        Session::flash('success', 'Portfolio category created successfully');
+        return redirect()->route('portfolio-category.index');
     }
 
     /**
@@ -56,10 +57,9 @@ class PortfolioCategoryController extends Controller
      * @param  \App\PortfolioCategory  $portfolioCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(PortfolioCategory $portfolioCategory, $id)
+    public function show(PortfolioCategory $portfolioCategory)
     {
-        $category = PortfolioCategory::find($id);
-        return view('admin.portfolio-category.show', ['category' => $category]);
+        return view('admin.portfolio-category.show', ['category' => $portfolioCategory]);
     }
 
     /**
@@ -68,10 +68,9 @@ class PortfolioCategoryController extends Controller
      * @param  \App\PortfolioCategory  $portfolioCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(PortfolioCategory $portfolioCategory, $id)
+    public function edit(PortfolioCategory $portfolioCategory)
     {
-        $category = PortfolioCategory::find($id);
-        return view('admin.portfolio-category.edit', ['category' => $category]);
+        return view('admin.portfolio-category.edit', ['category' => $portfolioCategory]);
     }
 
     /**
@@ -81,19 +80,19 @@ class PortfolioCategoryController extends Controller
      * @param  \App\PortfolioCategory  $portfolioCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PortfolioCategory $portfolioCategory, $id)
+    public function update(Request $request, PortfolioCategory $portfolioCategory)
     {
         $this->validate($request, [
             'name' => 'required',
         ]);
 
-        $category = PortfolioCategory::find($id);
+        $category = $portfolioCategory;
         $category->name = $request->name;
-        $category->slug = str_slug($request->name);
+        $category->slug = Str::slug($request->name);
         $category->save();
 
-        Session::flash('success', 'Portfolio Category Created Successfully');
-        return redirect()->route('portfolio.category.index');
+        Session::flash('success', 'Portfolio category created successfully');
+        return redirect()->route('portfolio-category.index');
     }
 
     /**
@@ -102,12 +101,12 @@ class PortfolioCategoryController extends Controller
      * @param  \App\PortfolioCategory  $portfolioCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PortfolioCategory $portfolioCategory, $id)
+    public function destroy(PortfolioCategory $portfolioCategory)
     {
-        $category = PortfolioCategory::find($id);
-        $category->delete();
-
-        Session::flash('success', 'Portfolio Category Deleted Successfully');
+        if($portfolioCategory){
+            $portfolioCategory->delete();   
+            Session::flash('success', 'Portfolio category deleted successfully');
+        }
         return redirect()->back();
     }
 }

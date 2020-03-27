@@ -10,8 +10,9 @@
         <div class="card-body">
           <div class="row">
             <div class="col-4 offset-4">
-              <form action="{{ route('product.category.update', ['id' => $category->id]) }}" method="post">
+              <form action="{{ route('product-category.update', $category->id) }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                   <label for="">Category Name</label>
                   <input type="text" class="form-control" name="name" value="{{ $category->name }}" placeholder="Name">

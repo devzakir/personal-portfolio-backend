@@ -7,7 +7,7 @@
           <h2>All Product List</h2>
           <div>
             <a href="{{ route('product.create') }}" class="btn btn-primary">Create Product</a>
-            <a class="btn btn-success" href="{{ route('product.category.index') }}"> Product Category</a>
+            <a class="btn btn-success" href="{{ route('product-category.index') }}"> Product Category</a>
           </div>
         </div>
         <div class="card-body">
@@ -33,10 +33,13 @@
                 </td>
                 <td>{{$p->title}}</td>
                 <td>{{$p->category->name }}</td>
-                <td>
-                    <a href="{{ route('product.edit', ['id' => $p->id]) }}" class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span> </a>
-                    <a href="{{ route('product.show', ['id' => $p->id]) }}" class="btn btn-primary btn-sm"> <span class="mdi mdi-eye"></span> </a>
-                    <a href="{{ route('product.destroy', ['id' => $p->id]) }}" class="btn btn-danger btn-sm"> <span class="mdi mdi-delete"></span> </a>
+                <td class="d-flex">
+                    <a href="{{ route('product.edit', $p->id) }}" class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span> </a>
+                    <a href="{{ route('product.show', $p->id) }}" class="btn btn-primary btn-sm ml-1"> <span class="mdi mdi-eye"></span> </a>
+                    <form action="{{ route('product.destroy', $p->id) }}" method="post" class="ml-1">
+                      @csrf @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-sm"> <span class="mdi mdi-delete"></span> </button>
+                    </form>
                 </td>
               </tr>
               @endforeach

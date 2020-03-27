@@ -5,7 +5,7 @@
       <div class="card card-default">
         <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
           <h2>All Product Category List</h2>
-          <a href="{{ route('product.category.create') }}" class="btn btn-primary">Create a Category</a>
+          <a href="{{ route('product-category.create') }}" class="btn btn-primary">Create a Category</a>
         </div>
         <div class="card-body">
           <table class="table table-bordered table-striped">
@@ -22,10 +22,13 @@
               <tr>
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
-                <td>
-                    <a href="{{ route('product.category.edit', ['id' => $category->id]) }}" class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span> </a>
-                    <a href="#" class="btn btn-primary btn-sm"> <span class="mdi mdi-eye"></span> </a>
-                    <a href="{{ route('product.category.destroy', ['id' => $category->id]) }}" class="btn btn-danger btn-sm"> <span class="mdi mdi-delete"></span> </a>
+                <td class="d-flex">
+                    <a href="{{ route('product-category.edit', $category->id) }}" class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span> </a>
+                    <a href="#" class="btn btn-primary btn-sm ml-1"> <span class="mdi mdi-eye"></span> </a>
+                    <form action="{{ route('product-category.destroy', $category->id) }}" method="post" class="ml-1">
+                      @csrf @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-sm"> <span class="mdi mdi-delete"></span> </button>
+                    </form>
                 </td>
               </tr>
               @endforeach
