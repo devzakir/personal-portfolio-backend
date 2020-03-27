@@ -20,6 +20,7 @@
               </tr>
             </thead>
             <tbody>
+              @if($testimonials->count() > 0)
               @foreach($testimonials as $t)
               <tr>
                 <td>{{$t->id}}</td>
@@ -41,6 +42,13 @@
                 </td>
               </tr>
               @endforeach
+              @else 
+                <tr>
+                  <td colspan="6">
+                    <h5 class="text-center pt-5 pb-5">No testimonials found</h5>
+                  </td>
+                </tr>
+              @endif 
             </tbody>
           </table>
         </div>
