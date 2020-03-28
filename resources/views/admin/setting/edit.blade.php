@@ -38,15 +38,15 @@
                     </div>
                     <div class="form-group">
                         <label for="">Copyright</label>
-                        <input type="text" class="form-control" name="copyright" placeholder="Copyright text" vlaue="{{ $setting->copyright }}">
+                        <input type="text" class="form-control" name="copyright" placeholder="Copyright text" value="{{ $setting->copyright }}">
                     </div>
                     <div class="form-group">
                         <label for="">Address</label>
-                        <textarea name="address" rows="1" class="form-control" placeholder="Address"> {{ $setting->address }} </textarea>
+                        <textarea name="address" rows="1" class="form-control" placeholder="Address">{{ $setting->address }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="">About</label>
-                        <textarea name="about" rows="3" class="form-control" placeholder="About"> {{ $setting->about }} </textarea>
+                        <textarea name="about" rows="3" class="form-control" placeholder="About">{{ $setting->about }}</textarea>
                     </div>
                 </div>
                 <div class="col-6">
