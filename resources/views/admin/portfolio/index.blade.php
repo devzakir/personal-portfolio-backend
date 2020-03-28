@@ -45,7 +45,7 @@
               @endforeach
               @else 
               <tr>
-                <td colspan="5"><h5 class="text-center">No Products Found.</h5></td>
+                <td colspan="5"><h5 class="text-center pt-4 pb-4">No Products Found.</h5></td>
               </tr>
               @endif 
             </tbody>

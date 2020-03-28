@@ -19,6 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($contacts->count() > 0)
                         @foreach($contacts as $c)
                         <tr>
                             <td>{{$c->id}}</td>
@@ -42,6 +43,11 @@
                             </td>
                         </tr>
                         @endforeach
+                        @else 
+                            <tr>
+                                <td colspan="6"><h5 class="text-center pt-4 pb-4">No Categories Found</h5></td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

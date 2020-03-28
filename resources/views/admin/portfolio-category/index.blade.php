@@ -34,7 +34,7 @@
               @endforeach
               @else 
                 <tr>
-                  <td colspan="3"><h5 class="text-center">No Categories Found</h5></td>
+                  <td colspan="3"><h5 class="text-center pt-4 pb-4">No Categories Found</h5></td>
                 </tr>
               @endif
             </tbody>

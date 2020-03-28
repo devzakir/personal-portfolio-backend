@@ -45,7 +45,7 @@
               @else 
                 <tr>
                   <td colspan="6">
-                    <h5 class="text-center pt-5 pb-5">No testimonials found</h5>
+                    <h5 class="text-center pt-4 pb-4">No testimonials found</h5>
                   </td>
                 </tr>
               @endif 
