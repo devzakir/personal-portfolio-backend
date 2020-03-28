@@ -50,6 +50,9 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     // Setting Route
     Route::get('setting', 'SettingController@edit')->name('setting.index');
     Route::post('setting', 'SettingController@update')->name('setting.update');
+    
+    // Contact route
+    Route::resource('contact', 'ContactController');
 
     // Resource Routes
     Route::get('/route',  'Controller@index')->name('route.index');
