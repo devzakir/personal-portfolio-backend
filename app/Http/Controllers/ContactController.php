@@ -17,7 +17,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contact = Contact::latest()->paginate(20);
+        $contact = Contact::orderBy('status', 'asc')->paginate(20);
         return view('admin.contact.index')->with('contacts', $contact);
     }
 
@@ -63,10 +63,9 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact, $id)
+    public function show(Contact $contact)
     {
-        $contact = Contact::find($id);
-        return view('admin.contact.show')->with('contact', $contact);
+        return view('admin.contact.show', compact('contact'));
     }
 
     /**
@@ -97,7 +96,7 @@ class ContactController extends Controller
         $contact->save();
 
         Session::flash('success', 'Message status updated successfully');
-        return redirect()->back();
+        return redirect()->route('contact.index');
     }
 
     /**

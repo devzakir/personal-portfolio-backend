@@ -71,6 +71,12 @@
               </a>
             </li>
             <li class="has-sub" >
+              <a class="sidenav-item-link" href="{{ route('contact.index') }}">
+                <i class="mdi mdi-account-group"></i>
+                <span class="nav-text">Messages</span>
+              </a>
+            </li>
+            <li class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('user.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Users</span>
