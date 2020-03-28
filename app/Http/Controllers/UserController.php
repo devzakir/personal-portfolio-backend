@@ -70,7 +70,7 @@ class UserController extends Controller
             });
             $img->crop(200,200,0,0)->save();
 
-            $user->avatar = 'storage/user/'. $image_new_name;
+            $user->avatar = '/storage/user/'. $image_new_name;
             $user->save();
         }
         
@@ -144,7 +144,7 @@ class UserController extends Controller
                 unlink(public_path($old_image));
             }
 
-            $user->avatar = 'storage/user/'. $image_new_name;
+            $user->avatar = '/storage/user/'. $image_new_name;
             $user->save();
         }
         
@@ -233,10 +233,9 @@ class UserController extends Controller
                 }
             }
 
-            $user->avatar = 'storage/user/'. $image_new_name;
+            $user->avatar = '/storage/user/'. $image_new_name;
         }
 
-        $user->save();
         $user->save();
 
         Session::flash('success', 'Profile Updated Successfully');

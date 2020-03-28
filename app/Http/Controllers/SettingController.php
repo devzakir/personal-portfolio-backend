@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Setting;
 use Illuminate\Http\Request;
 
@@ -69,31 +70,42 @@ class SettingController extends Controller
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $this->validate($request, [
             'name' => 'required',
         ]);
 
+        $setting = Setting::find(1);
         $setting->name = $request->name;
-        $setting->navbar = $request->navbar;
+        // $setting->navbar = $request->navbar;
         $setting->copyright = $request->copyright;
+        $setting->about = $request->about;
+        $setting->phone = $request->phone;
+        $setting->email = $request->email;
+        $setting->address = $request->address;
+        $setting->github = $request->github;
+        $setting->facebook = $request->facebook;
+        $setting->linkedin = $request->linkedin;
+        $setting->stackoverflow = $request->stackoverflow;
+        $setting->skype = $request->skype;
+        $setting->quora = $request->quora;
         $setting->save();
 
         // Upload Image and Resize
-        if($request->hasFile('avatar')){
+        if($request->hasFile('logo')){
             $old_image = $setting->logo;
 
             $image = $request->logo;
             $image_new_name = time() .'.'. $image->getClientOriginalExtension();
             $image->move('storage/setting/', $image_new_name);
-            $setting->logo = 'storage/setting/'. $image_new_name;
+            $setting->logo = '/storage/setting/'. $image_new_name;
             $setting->save();
 
             if($old_image){
-                if(file_exists($old_image)){
-                    unlink($old_image);
+                if(file_exists(public_path($old_image))){
+                    unlink(public_path($old_image));
                 }
             }
         }
