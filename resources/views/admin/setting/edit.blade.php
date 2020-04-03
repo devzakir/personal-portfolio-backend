@@ -51,6 +51,10 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        <label for="">My Resume</label>
+                        <input type="text" class="form-control" name="resume" placeholder="Enter resume link" value="{{ $setting->resume }}">
+                    </div>
+                    <div class="form-group">
                         <label for="">Github Profile</label>
                         <input type="text" class="form-control" name="github" placeholder="Enter github" value="{{ $setting->github }}">
                     </div>

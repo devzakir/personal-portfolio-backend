@@ -18,6 +18,7 @@ class SettingTableSeeder extends Seeder
             'phone' => '+880 1794 1724 79',
             'email' => 'web.zakirbd@gmail.com',
             'address' => 'Adabor, Dhaka-1207, Bangladesh',
+            'resume' => 'https://bit.ly/2UWh0Ka',
             'facebook' => 'https://facebook.com/devzakir',
             'github' => 'https://github.com/devzakir',
             'linkedin' => 'https://linkedin.com/in/devzakir',

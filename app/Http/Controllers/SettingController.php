@@ -82,6 +82,7 @@ class SettingController extends Controller
         // $setting->navbar = $request->navbar;
         $setting->copyright = $request->copyright;
         $setting->about = $request->about;
+        $setting->resume = $request->resume;
         $setting->phone = $request->phone;
         $setting->email = $request->email;
         $setting->address = $request->address;
