@@ -22,6 +22,7 @@ class CreatePortfoliosTable extends Migration
             $table->bigInteger('category_id');
             $table->string('category_name');
             $table->text('description')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
