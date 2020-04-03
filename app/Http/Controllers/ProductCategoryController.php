@@ -82,7 +82,7 @@ class ProductCategoryController extends Controller
     public function update(Request $request, ProductCategory $productCategory)
     {
         $this->validate($request, [
-            'name' => "required|unique:product_categories,$productCategory->id",
+            'name' => "required|unique:product_categories,name,$productCategory->id",
         ]);
         
         $category = $productCategory;
