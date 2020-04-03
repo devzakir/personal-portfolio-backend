@@ -39,22 +39,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'email' => 'required|email', 
-            'subject' => 'required|string', 
-            'message' => 'required|min:20',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|string',
+        //     'email' => 'required|email', 
+        //     'subject' => 'required|string', 
+        //     'message' => 'required|min:20',
+        // ]);
 
-        Contact::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message,
-        ]);
+        // Contact::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'subject' => $request->subject,
+        //     'message' => $request->message,
+        // ]);
 
-        Session::flash('success');
-        return redirect()->back();
+        // Session::flash('success');
+        // return redirect()->back();
     }
 
     /**

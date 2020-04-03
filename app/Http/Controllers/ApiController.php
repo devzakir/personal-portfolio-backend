@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Portfolio;
 use App\Setting;
 use App\Testimonial;
@@ -25,5 +26,23 @@ class ApiController extends Controller
         $data = Testimonial::latest()->take(3)->get();
 
         return response()->json($data, 200);
+    }
+
+    public function contact(Request $request){
+        $this->validate($request, [
+            'name' => 'required|string',
+            'email' => 'required|email', 
+            'subject' => 'required|string', 
+            'message' => 'required|min:20',
+        ]);
+
+        Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+
+        return response()->json('success', 200);
     }
 }

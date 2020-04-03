@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/setting', 'ApiController@setting');
 Route::get('/portfolio', 'ApiController@portfolio');
 Route::get('/testimonial', 'ApiController@testimonial');
+Route::post('/contact', 'ApiController@contact');

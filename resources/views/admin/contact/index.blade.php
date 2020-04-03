@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card card-default">
             <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
-                <h2>Contact List</h2>
+                <h2>Message List</h2>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
@@ -45,7 +45,7 @@
                         @endforeach
                         @else 
                             <tr>
-                                <td colspan="6"><h5 class="text-center pt-4 pb-4">No Categories Found</h5></td>
+                                <td colspan="6"><h5 class="text-center pt-4 pb-4">No Messages Found</h5></td>
                             </tr>
                         @endif
                     </tbody>
