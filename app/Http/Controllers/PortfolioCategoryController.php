@@ -39,7 +39,7 @@ class PortfolioCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:portfolio_categories,name',
         ]);
 
         $category = PortfolioCategory::create([
@@ -83,7 +83,7 @@ class PortfolioCategoryController extends Controller
     public function update(Request $request, PortfolioCategory $portfolioCategory)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => "required|unique:portfolio_categories,name, $portfolioCategory->id",
         ]);
 
         $category = $portfolioCategory;
