@@ -3,8 +3,11 @@
 @section('content')
 <div class="card card-default">
     <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
-        <h2>Users List</h2>
-        <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
+        <h2>Course Category List</h2>
+        <div>
+            <a href="{{ route('course.index') }}" class="btn btn-primary">Course List</a>
+            <a href="{{ route('course-category.create') }}" class="btn btn-primary">Create Category</a>
+        </div>
     </div>
     <div class="card-body">
         <div class="row">
@@ -13,22 +16,21 @@
                     <thead class="thead-dark">
                         <tr>
                             <th> # </th>
-                            <th> First </th>
-                            <th> Last </th>
+                            <th> Name </th>
+                            <th> Slug </th>
                             <th style="width: 150px"> Handle </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if($users->count())
-                        @foreach($users as $user)
+                        @if($categories->count())
+                        @foreach($categories as $category)
                         <tr>
-                            <td> 1 </td>
-                            <td> Lucia </td>
-                            <td> Christ </td>
+                            <td> {{ $category->id }} </td>
+                            <td> {{ $category->name }} </td>
+                            <td> {{ $category->slug }} </td>
                             <td style="width: 150px" class="d-flex">
-                                <a href="{{ route('user.edit', $user->id) }}" class="mr-1 btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
-                                <a href="{{ route('user.show', $user->id) }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
-                                <a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger btn-sm"> <i class="mdi mdi-trash-can"></i> </a>
+                                <a href="{{ route('course-category.edit', $category->id) }}" class="mr-1 btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
+                                <a href="#" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
                                 <form action="{{ route('course-category.destroy', $category->id) }}" method="post">
                                     @csrf 
                                     @method('DELETE')
@@ -42,7 +44,7 @@
                         @else
                         <tr>
                             <td colspan="6">
-                                <h5 class="text-center pt-5 pb-5">NO Post Found</h5>
+                                <h5 class="text-center pt-5 pb-5">NO Category Found</h5>
                             </td>
                         </tr>
                         @endif

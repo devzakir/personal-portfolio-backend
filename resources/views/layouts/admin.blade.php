@@ -71,6 +71,12 @@
               </a>
             </li>
             <li class="has-sub" >
+              <a class="sidenav-item-link" href="{{ route('course.index') }}">
+                <i class="mdi mdi-account-group"></i>
+                <span class="nav-text">Course</span>
+              </a>
+            </li>
+            <li class="has-sub" >
               <a class="sidenav-item-link" href="{{ route('contact.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Messages</span>
