@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Portfolio;
+use App\Product;
 use App\Setting;
 use App\Testimonial;
 use Illuminate\Http\Request;
@@ -44,5 +45,11 @@ class ApiController extends Controller
         ]);
 
         return response()->json('success', 200);
+    }
+
+    public function products(){
+        $products = Product::latest()->paginate(12);
+
+        return response()->json($products, 200);
     }
 }

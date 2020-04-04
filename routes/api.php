@@ -21,3 +21,5 @@ Route::get('/setting', 'ApiController@setting');
 Route::get('/portfolio', 'ApiController@portfolio');
 Route::get('/testimonial', 'ApiController@testimonial');
 Route::post('/contact', 'ApiController@contact');
+
+Route::get('/products', 'ApiController@products');
