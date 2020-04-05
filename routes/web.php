@@ -57,6 +57,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     // Course route
     Route::resource('course', 'CourseController');
     Route::resource('course-category', 'CourseCategoryController');
+    Route::resource('course-section', 'CourseSectionController');
+    Route::resource('course-video', 'CourseVideoController');
 
     // Resource Routes
     Route::get('/route',  'Controller@index')->name('route.index');
