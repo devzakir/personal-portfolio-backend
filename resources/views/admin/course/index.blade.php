@@ -16,22 +16,38 @@
                     <thead class="thead-dark">
                         <tr>
                             <th> # </th>
-                            <th> First </th>
-                            <th> Last </th>
-                            <th> Handle </th>
+                            <th> Image </th>
+                            <th> Title </th>
+                            <th> Category </th>
+                            <th> User </th>
+                            <th> Price </th>
+                            <th style="width: 150px"> Handle </th>
                         </tr>
                     </thead>
                     <tbody>
                         @if($courses->count())
                         @foreach($courses as $course)
                         <tr>
-                            <td> 1 </td>
-                            <td> Lucia </td>
-                            <td> Christ </td>
+                            <td> {{ $course->id }} </td>
+                            <td>
+                                <div style="max-height:60px; max-width:60px; overflow:hidden">
+                                    <img src="{{ asset($course->image) }}" alt="" class="img-fluid">
+                                </div>
+                            </td>
+                            <td> {{ $course->title }} </td>
+                            <td> {{ $course->category_id }} </td>
+                            <td> {{ $course->user_id }} </td>
+                            <td> 
+                                @if($course->sale_price)
+                                    {{ $course->sale_price }} <span style="text-decoration: line-through;">{{ $course->price }}</span>
+                                @else 
+                                    {{ $course->price }}
+                                @endif
+                            </td>
                             <td style="width: 150px" class="d-flex">
-                                <a href="{{ route('course.edit', $user->id) }}" class="mr-1 btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
-                                <a href="{{ route('course.show', $user->id) }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
-                                <form action="{{ route('course.destroy', $user->id) }}" method="post">
+                                <a href="{{ route('course.edit', $course->id) }}" class="mr-1 btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
+                                <a href="{{ route('course.show', $course->id) }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
+                                <form action="{{ route('course.destroy', $course->id) }}" method="post">
                                     @csrf 
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"> 

@@ -9,8 +9,17 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('course.store') }}" method="post">
+                <form action="{{ route('course.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
@@ -19,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="courseId">Select Course Category</label>
-                                <select name="category_id" id="courseId" class="form-control">
+                                <select name="category" id="courseId" class="form-control">
                                     <option value="">Select Course Category</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -55,8 +64,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
                     <div class="form-footer pt-4 pt-5 mt-4 border-top">
                         <button type="submit" class="btn btn-primary btn-default">Create Course</button>
                         <a href="{{ route('course.index') }}" class="btn btn-secondary btn-default">Cancel</a>
@@ -66,5 +73,4 @@
         </div>
     </div>
 </div>
-
 @endsection

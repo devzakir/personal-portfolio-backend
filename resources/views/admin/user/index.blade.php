@@ -17,7 +17,7 @@
               <th> Name </th>
               <th> Email </th>
               <th> Role </th>
-              <th> Handle </th>
+              <th style="width: 150px"> Handle </th>
             </tr>
           </thead>
           <tbody>
@@ -29,7 +29,7 @@
               <td> {{ $user->name }} </td>
               <td> {{ $user->email }} </td>
               <td> {{ $user->role->name }} </td>
-              <td> 
+              <td style="width: 150px"> 
                 <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
                 <a href="{{ route('user.show', ['id' => $user->id]) }}" class="btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
                 <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-danger btn-sm"> <i class="mdi mdi-trash-can"></i> </a>
