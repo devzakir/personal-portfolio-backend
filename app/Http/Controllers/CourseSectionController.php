@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Course;
 use App\CourseSection;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class CourseSectionController extends Controller
      */
     public function index()
     {
-        //
+        $sections = CourseSection::all();
+
+        return view('admin.course-section.index', compact('sections'));
     }
 
     /**
@@ -24,7 +28,8 @@ class CourseSectionController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::all();
+        return view('admin.course-section.create', compact('courses'));
     }
 
     /**
@@ -35,7 +40,18 @@ class CourseSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'course' => 'required',
+            'name' => 'required',
+        ]);
+
+        $section = CourseSection::create([
+            'course_id' => $request->course,
+            'name' => $request->name,
+        ]);
+
+        Session::flash('success', 'Course section created successfully');
+        return redirect()->back();
     }
 
     /**
@@ -46,7 +62,9 @@ class CourseSectionController extends Controller
      */
     public function show(CourseSection $courseSection)
     {
-        //
+        $courses = Course::all();
+        $section = $courseSection;
+        return view('admin.course-section.show', compact(['courses', 'section']));
     }
 
     /**
@@ -57,7 +75,9 @@ class CourseSectionController extends Controller
      */
     public function edit(CourseSection $courseSection)
     {
-        //
+        $courses = Course::all();
+        $section = $courseSection;
+        return view('admin.course-section.edit', compact(['courses', 'section']));
     }
 
     /**
@@ -69,7 +89,17 @@ class CourseSectionController extends Controller
      */
     public function update(Request $request, CourseSection $courseSection)
     {
-        //
+        $this->validate($request, [
+            'course' => 'required',
+            'name' => 'required',
+        ]);
+        
+        $section = $courseSection;
+        $section->course_id = $request->course;
+        $section->name = $request->name;
+
+        Session::flash('success', 'Course section updated successfully');
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +110,6 @@ class CourseSectionController extends Controller
      */
     public function destroy(CourseSection $courseSection)
     {
-        //
+        
     }
 }
