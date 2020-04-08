@@ -47,6 +47,7 @@
                             <td style="width: 150px" class="d-flex">
                                 <a href="{{ route('course.edit', $course->id) }}" class="mr-1 btn btn-primary btn-sm"> <i class="mdi mdi-square-edit-outline"></i> </a>
                                 <a href="{{ route('course.show', $course->id) }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
+                                <a href="{{ route('course-section.index') }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-menu"></i> </a>
                                 <form action="{{ route('course.destroy', $course->id) }}" method="post">
                                     @csrf 
                                     @method('DELETE')
