@@ -23,7 +23,7 @@ class SettingTableSeeder extends Seeder
             'github' => 'https://github.com/devzakir',
             'linkedin' => 'https://linkedin.com/in/devzakir',
             'quora' => 'https://www.quora.com/profile/Zakir-Hossen-16',
-            'skype' => 'web.zakirbd',
+            'skype' => 'https://join.skype.com/invite/mpMcvg2NWxdD',
             'stackoverflow' => 'https://stackoverflow.com/users/9127475/devzakir',
         ]);
     }
