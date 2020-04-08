@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CourseSection;
 use App\CourseVideo;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class CourseVideoController extends Controller
      */
     public function index()
     {
-        //
+        $videos = CourseVideo::latest()->paginate(30);
+
+        return view('admin.course-video.index', compact('videos'));
     }
 
     /**
@@ -24,7 +27,8 @@ class CourseVideoController extends Controller
      */
     public function create()
     {
-        //
+        $sections = CourseSection::all();
+        return view('admin.course-video.create', compact('sections'));
     }
 
     /**
@@ -35,7 +39,14 @@ class CourseVideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+
+        $video = CourseVideo::create($request->all());
+
+        Session::flash('success', 'Course Video created successfully');
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +68,8 @@ class CourseVideoController extends Controller
      */
     public function edit(CourseVideo $courseVideo)
     {
-        //
+        $section = CourseSection::all();
+        return view('admin.course-video.edit', compact(['video', 'section']));
     }
 
     /**
@@ -69,7 +81,14 @@ class CourseVideoController extends Controller
      */
     public function update(Request $request, CourseVideo $courseVideo)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+
+        $video = CourseVideo::update($request->all());
+
+        Session::flash('success', 'Course Video updated successfully');
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +99,14 @@ class CourseVideoController extends Controller
      */
     public function destroy(CourseVideo $courseVideo)
     {
-        //
+        $video = $courseVideo;
+
+        if($video){
+            $video->delete();
+
+            Session::flash('success', 'Course Video deleted');
+        }
+
+        return redirect()->back();
     }
 }

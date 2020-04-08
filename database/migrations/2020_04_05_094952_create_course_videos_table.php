@@ -15,13 +15,15 @@ class CreateCourseVideosTable extends Migration
     {
         Schema::create('course_videos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('slug');
             $table->double('video_time')->nullable();
             $table->string('type')->nullable();
             $table->string('video')->nullable();
-            $table->string('download_url');
-            $table->integer('download_count');
+            $table->string('download_url')->nullable();
+            $table->integer('download_count')->nullable();
+            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('section_id');
             $table->timestamps();
         });
     }
