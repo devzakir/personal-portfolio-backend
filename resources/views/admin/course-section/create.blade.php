@@ -13,7 +13,7 @@
                         <form action="{{ route('course-section.store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="course">Course Section</label>
+                                <label for="course">Select Course</label>
                                 <select name="course" id="course" class="form-control">
                                     <option value="" selected style="display:none">Select Section</option>
                                     @foreach($courses as $course)

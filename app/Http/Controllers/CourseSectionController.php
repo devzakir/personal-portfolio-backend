@@ -97,6 +97,7 @@ class CourseSectionController extends Controller
         $section = $courseSection;
         $section->course_id = $request->course;
         $section->name = $request->name;
+        $section->save();
 
         Session::flash('success', 'Course section updated successfully');
         return redirect()->back();
@@ -110,6 +111,12 @@ class CourseSectionController extends Controller
      */
     public function destroy(CourseSection $courseSection)
     {
-        
+        $section = $courseSection;
+
+        if($section){
+            $section->delete();
+            Session::flash('success', 'Course Deleted Successfully');
+        }
+        return redirect()->back();
     }
 }
