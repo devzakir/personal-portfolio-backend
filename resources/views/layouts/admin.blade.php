@@ -99,7 +99,7 @@
         <hr class="separator" />
         <div class="sidebar-footer">
           <div class="sidebar-footer-content text-center">
-            <a href="/" target="_blank" class="btn btn-primary">View Website</a>
+            <a href="https://zakirhossen.com" target="_blank" class="btn btn-primary">View Website</a>
           </div>
         </div>
       </div>
