@@ -12,6 +12,7 @@
             <div class="col-6 offset-3">
               <form action="{{ route('portfolio.update', $portfolio->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 @if ($errors->any())
                   <div class="alert alert-danger">
                     <ul>
