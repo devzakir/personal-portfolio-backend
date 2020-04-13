@@ -18,7 +18,7 @@ class ApiController extends Controller
     }
 
     public function portfolio(){
-        $data = Portfolio::where('status', true)->paginate(6);
+        $data = Portfolio::latest()->where('status', true)->paginate(6);
 
         return response()->json($data, 200);
     }
