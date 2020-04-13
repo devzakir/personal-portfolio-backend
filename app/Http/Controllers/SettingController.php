@@ -111,6 +111,23 @@ class SettingController extends Controller
             }
         }
 
+        // Upload Image and Resize
+        if($request->hasFile('avatar')){
+            $old_image = $setting->avatar;
+
+            $image = $request->avatar;
+            $image_new_name = time() .'.'. $image->getClientOriginalExtension();
+            $image->move('storage/setting/', $image_new_name);
+            $setting->avatar = '/storage/setting/'. $image_new_name;
+            $setting->save();
+
+            if($old_image){
+                if(file_exists(public_path($old_image))){
+                    unlink(public_path($old_image));
+                }
+            }
+        }
+
         Session::flash('success', 'Setting updated successfully');
         return redirect()->back();
     }

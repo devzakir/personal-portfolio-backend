@@ -51,6 +51,10 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        <label for="">My Photo</label>
+                        <input type="file" class="form-control-file" name="avatar">
+                    </div>
+                    <div class="form-group">
                         <label for="">My Resume</label>
                         <input type="text" class="form-control" name="resume" placeholder="Enter resume link" value="{{ $setting->resume }}">
                     </div>
