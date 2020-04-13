@@ -20,6 +20,7 @@ class CreateSettingsTable extends Migration
             $table->boolean('navbar')->default(false);
             $table->string('copyright')->nullable();
             $table->text('about')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('resume')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
