@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Mail\Contact as MailContact;
 use App\Portfolio;
 use App\Product;
 use App\Setting;
 use App\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
 {
@@ -37,12 +39,14 @@ class ApiController extends Controller
             'message' => 'required|min:20',
         ]);
 
-        Contact::create([
+        $contact = Contact::create([
             'name' => $request->name,
             'email' => $request->email,
             'subject' => $request->subject,
             'message' => $request->message,
         ]);
+        
+        Mail::to('web.zakirbd@gmail.com')->send(new MailContact($contact));
 
         return response()->json('success', 200);
     }
