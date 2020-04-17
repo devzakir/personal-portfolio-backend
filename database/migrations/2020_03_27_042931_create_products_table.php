@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->unique();
             $table->string('slug');
-            $table->bigInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('category_name');
             $table->string('link');
             $table->string('image');
@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->longText('description')->nullable();
             $table->bigInteger('download_count')->default(0);
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
         });
     }
 
