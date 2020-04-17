@@ -22,9 +22,11 @@ class CreateCourseVideosTable extends Migration
             $table->string('video')->nullable();
             $table->string('download_url')->nullable();
             $table->integer('download_count')->nullable();
-            $table->unsignedInteger('course_id');
-            $table->unsignedInteger('section_id');
+            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('section_id');
             $table->timestamps();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('section_id')->references('id')->on('course_sections')->onDelete('cascade');
         });
     }
 
