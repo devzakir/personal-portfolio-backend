@@ -25,12 +25,11 @@
                             <td>{{ $section->name }}</td>
                             <td>{{ $section->course->title }}</td>
                             <td class="d-flex" style="width:150px">
-                                <a href="{{ route('course-section.edit', $section->id) }}"
-                                    class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span>
+                                <a href="{{ route('course-section.edit', $section->id) }}" class="btn btn-success btn-sm mr-1">
+                                    <span class="mdi mdi-square-edit-outline"></span>
                                 </a>
-                                <a href="#" class="btn btn-primary btn-sm ml-1"> <span class="mdi mdi-eye"></span> </a>
-                                <form action="{{ route('course-section.destroy', $section->id) }}" method="post"
-                                    class="ml-1">
+                                <a href="{{ route('course-video.index') }}" class="mr-1 btn btn-success btn-sm mr-1"> <i class="mdi mdi-menu"></i> </a>
+                                <form action="{{ route('course-section.destroy', $section->id) }}" method="post">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"> <span
                                             class="mdi mdi-delete"></span> </button>
@@ -39,8 +38,8 @@
                         </tr>
                         @endforeach
                         @else
-                        <tr>
-                            <td colspan="3">
+                        <tr> 
+                            <td colspan="4">
                                 <h5 class="text-center pt-4 pb-4">No Sections Found</h5>
                             </td>
                         </tr>
