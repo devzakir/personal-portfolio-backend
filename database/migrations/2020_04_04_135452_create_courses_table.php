@@ -17,8 +17,8 @@ class CreateCoursesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->unique();
             $table->string('slug');
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('price');
             $table->integer('sale_price')->nullable();
             $table->string('image');
