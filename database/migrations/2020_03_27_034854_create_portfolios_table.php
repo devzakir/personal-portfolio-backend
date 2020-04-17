@@ -19,11 +19,12 @@ class CreatePortfoliosTable extends Migration
             $table->string('slug');
             $table->string('link')->nullable();
             $table->string('image');
-            $table->bigInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('category_name');
             $table->text('description')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('portfolio_categories')->onDelete('cascade');
         });
     }
 
