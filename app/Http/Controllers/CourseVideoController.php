@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use Session;
 use App\CourseSection;
 use App\CourseVideo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseVideoController extends Controller
 {
@@ -28,7 +31,9 @@ class CourseVideoController extends Controller
     public function create()
     {
         $sections = CourseSection::all();
-        return view('admin.course-video.create', compact('sections'));
+        $courses = Course::all();
+
+        return view('admin.course-video.create', compact(['sections', 'courses']));
     }
 
     /**
@@ -43,7 +48,17 @@ class CourseVideoController extends Controller
             'title' => 'required',
         ]);
 
-        $video = CourseVideo::create($request->all());
+        $video = CourseVideo::create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'video_time' => $request->video_time,
+            'type' => $request->type,
+            'video' => $request->video,
+            'download_url' => $request->download_url,
+            'download_count' => $request->download_count,
+            'course_id' => $request->course_id,
+            'section_id' => $request->section_id,
+        ]);
 
         Session::flash('success', 'Course Video created successfully');
         return redirect()->back();
@@ -69,7 +84,10 @@ class CourseVideoController extends Controller
     public function edit(CourseVideo $courseVideo)
     {
         $section = CourseSection::all();
-        return view('admin.course-video.edit', compact(['video', 'section']));
+        $courses = Course::all();
+        $video = $courseVideo;
+
+        return view('admin.course-video.edit', compact(['video', 'section', 'courses']));
     }
 
     /**
@@ -85,7 +103,17 @@ class CourseVideoController extends Controller
             'title' => 'required',
         ]);
 
-        $video = CourseVideo::update($request->all());
+        $video = $courseVideo;
+        $video->title = $request->title;
+        $video->slug = Str::slug($request->title);
+        $video->video_time = $request->video_time;
+        $video->type = $request->type;
+        $video->video = $request->video;
+        $video->download_url = $request->download_url;
+        $video->download_count = $request->download_count;
+        $video->course_id = $request->course_id;
+        $video->section_id = $request->section_id;
+        $video->save();
 
         Session::flash('success', 'Course Video updated successfully');
         return redirect()->back();

@@ -14,11 +14,16 @@ class CourseSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $sections = CourseSection::all();
+        $course = Course::find($id);
+        if($course){
+            $sections =  $course->sections;
 
-        return view('admin.course-section.index', compact('sections'));
+            return view('admin.course-section.index', compact(['sections', 'course']));
+        }else {
+            return redirect()->route('course.index');
+        }
     }
 
     /**
@@ -26,10 +31,15 @@ class CourseSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $courses = Course::all();
-        return view('admin.course-section.create', compact('courses'));
+        $course = Course::find($id);
+
+        if($course){
+            return view('admin.course-section.create', compact('course'));
+        }else {
+            return redirect()->route('course.section.index', ['id' => $course->id]);
+        }
     }
 
     /**
@@ -38,15 +48,14 @@ class CourseSectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $this->validate($request, [
-            'course' => 'required',
             'name' => 'required',
         ]);
 
         $section = CourseSection::create([
-            'course_id' => $request->course,
+            'course_id' => $id,
             'name' => $request->name,
         ]);
 
@@ -73,11 +82,21 @@ class CourseSectionController extends Controller
      * @param  \App\CourseSection  $courseSection
      * @return \Illuminate\Http\Response
      */
-    public function edit(CourseSection $courseSection)
+    public function edit($id, $sectionId)
     {
-        $courses = Course::all();
-        $section = $courseSection;
-        return view('admin.course-section.edit', compact(['courses', 'section']));
+        $course = Course::find($id);
+
+        if($course){
+            $courses = Course::all();
+            $section = CourseSection::find($sectionId);
+            if($section){
+                return view('admin.course-section.edit', compact(['courses', 'section']));
+            }else {
+                return redirect()->route('course.section.index', ['id' => $course->id]);
+            }
+        }else {
+            return redirect()->route('course.section.index', ['id' => $course->id]);
+        }
     }
 
     /**
@@ -87,14 +106,14 @@ class CourseSectionController extends Controller
      * @param  \App\CourseSection  $courseSection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseSection $courseSection)
+    public function update(Request $request, $id, $sectionId)
     {
         $this->validate($request, [
             'course' => 'required',
             'name' => 'required',
         ]);
         
-        $section = $courseSection;
+        $section = CourseSection::find($sectionId);
         $section->course_id = $request->course;
         $section->name = $request->name;
         $section->save();
@@ -109,9 +128,9 @@ class CourseSectionController extends Controller
      * @param  \App\CourseSection  $courseSection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseSection $courseSection)
+    public function destroy($id, $sectionId)
     {
-        $section = $courseSection;
+        $section = CourseSection::find($sectionId);
 
         if($section){
             $section->delete();

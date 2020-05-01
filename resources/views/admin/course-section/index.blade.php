@@ -5,7 +5,7 @@
         <div class="card card-default">
             <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
                 <h2>All Course Sections</h2>
-                <a href="{{ route('course-section.create') }}" class="btn btn-primary">Create Course Section</a>
+                <a href="{{ route('course.section.create', ['id' => $course->id]) }}" class="btn btn-primary">Create Course Section</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
@@ -25,11 +25,11 @@
                             <td>{{ $section->name }}</td>
                             <td>{{ $section->course->title }}</td>
                             <td class="d-flex" style="width:150px">
-                                <a href="{{ route('course-section.edit', $section->id) }}" class="btn btn-success btn-sm mr-1">
+                                <a href="{{ route('course.section.edit', ['id' => $course->id, 'sectionId' => $section->id]) }}" class="btn btn-success btn-sm mr-1">
                                     <span class="mdi mdi-square-edit-outline"></span>
                                 </a>
                                 <a href="{{ route('course-video.index') }}" class="mr-1 btn btn-success btn-sm mr-1"> <i class="mdi mdi-menu"></i> </a>
-                                <form action="{{ route('course-section.destroy', $section->id) }}" method="post">
+                                <form action="{{ route('course.section.destroy', ['id' => $course->id, 'sectionId' => $section->id]) }}" method="post">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"> <span
                                             class="mdi mdi-delete"></span> </button>

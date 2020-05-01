@@ -57,7 +57,15 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     // Course route
     Route::resource('course', 'CourseController');
     Route::resource('course-category', 'CourseCategoryController');
-    Route::resource('course-section', 'CourseSectionController');
+    // Route::resource('course-section', 'CourseSectionController');
+    // Route::resource('course-section', 'CourseSectionController')->except(['index']);
+    Route::get('/course/{id}/section', 'CourseSectionController@index')->name('course.section.index');
+    Route::get('/course/{id}/section/create', 'CourseSectionController@create')->name('course.section.create');
+    Route::post('/course/{id}/section/store', 'CourseSectionController@store')->name('course.section.store');
+    Route::get('/course/{id}/section/{sectionId}/edit', 'CourseSectionController@edit')->name('course.section.edit');
+    Route::put('/course/{id}/section/{sectionId}/update', 'CourseSectionController@update')->name('course.section.update');
+    Route::delete('/course/{id}/section/{sectionId}/delete', 'CourseSectionController@destroy')->name('course.section.destroy');
+
     Route::resource('course-video', 'CourseVideoController');
 
     // Resource Routes
