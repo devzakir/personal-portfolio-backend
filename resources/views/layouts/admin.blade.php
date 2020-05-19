@@ -46,49 +46,49 @@
         <div class="sidebar-scrollbar">
           <!-- sidebar menu -->
           <ul class="nav sidebar-inner" id="sidebar-menu">
-            <li  class="has-sub" >
+            <li  class="has-sub  @if(request()->is('admin-panel/dashboard*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('dashboard') }}">
                 <i class="mdi mdi-view-dashboard-outline"></i>
                 <span class="nav-text">Dashboard</span>
               </a>
             </li>
-            <li class="has-sub" >
+            <li class="has-sub  @if(request()->is('admin-panel/product*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('product.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Product</span>
               </a>
             </li>
-            <li class="has-sub" >
+            <li class="has-sub  @if(request()->is('admin-panel/portfolio*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('portfolio.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Portfolio</span>
               </a>
             </li>
-            <li class="has-sub" >
+            <li class="has-sub  @if(request()->is('admin-panel/testimonial*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('testimonial.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Testimonial</span>
               </a>
             </li>
-            <li class="has-sub" >
+            <li class="has-sub  @if(request()->is('admin-panel/course*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('course.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Course</span>
               </a>
             </li>
-            <li class="has-sub" >
+            <li class="has-sub  @if(request()->is('admin-panel/contact*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('contact.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Messages</span>
               </a>
             </li>
-            <li class="has-sub" >
+            <li class="has-sub  @if(request()->is('admin-panel/user*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('user.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Users</span>
               </a>
             </li>
-            <li  class="has-sub" >
+            <li  class="has-sub  @if(request()->is('admin-panel/setting*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('setting.index') }}">
                 <i class="mdi mdi-settings-box"></i>
                 <span class="nav-text">Settings</span>
