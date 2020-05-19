@@ -90,7 +90,7 @@
               </div>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-success" type="submit">Create Portfolio</button>
+                <button class="btn btn-success" type="submit">Add Product</button>
               </div>
           </form>
         </div>

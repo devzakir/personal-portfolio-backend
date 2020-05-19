@@ -89,7 +89,7 @@
               </div>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-success" type="submit">Update Portfolio</button>
+                <button class="btn btn-success" type="submit">Update Product</button>
               </div>
           </form>
         </div>
