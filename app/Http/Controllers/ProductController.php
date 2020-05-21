@@ -68,6 +68,7 @@ class ProductController extends Controller
             'license' => $request->license,
             'layout' => $request->layout,
             'link' => $request->link,
+            'download_link' => $request->download_link,
             'description' => $request->description,
             'category_name' => ProductCategory::find($request->category)->name,
         ]);
@@ -140,6 +141,7 @@ class ProductController extends Controller
         $product->slug = Str::slug($request->title);
         $product->category_id = $request->category;
         $product->link = $request->link;
+        $product->download_link = $request->download_link;
         $product->price = $request->price;
         $product->version = $request->version;
         $product->layout = $request->layout;

@@ -33,8 +33,8 @@
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="">Product Link</label>
-                  <input type="text" name="link" value="{{ old('link', $product->link) }}" class="form-control" placeholder="Product Link">
+                  <label for="">Product Demo Link</label>
+                  <input type="text" name="link" value="{{ old('link', $product->link) }}" class="form-control" placeholder="Product Demo Link">
                 </div>
               </div>
             </div>
@@ -50,10 +50,10 @@
                 </div>
               </div>
               <div class="col-6">
-                  <div class="form-group">
-                    <label for="">Layout</label>
-                    <input type="text" class="form-control" name="layout" value="{{ old('layout', $product->layout) }}" placeholder="Layout">
-                  </div>
+                <div class="form-group">
+                  <label for="download_link">Product Download Link</label>
+                  <input type="text" name="download_link" value="{{ old('download_link', $product->download_link) }}" class="form-control" placeholder="Product Download Link">
+                </div>
               </div>
             </div>
             <div class="row">
@@ -82,6 +82,10 @@
                     <label for="">License</label>
                     <input type="text" class="form-control" name="license" value="{{ old('license', $product->license) }}" placeholder="License">
                   </div>
+                    <div class="form-group">
+                      <label for="">Layout</label>
+                      <input type="text" class="form-control" name="layout" value="{{ old('layout', $product->layout) }}" placeholder="Layout">
+                    </div>
                   <div class="form-group">
                     <label for="">Choose Product Image</label>
                     <input type="file" name="image" class="form-control-file">

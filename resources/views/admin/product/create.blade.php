@@ -33,8 +33,8 @@
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="">Product Link</label>
-                  <input type="text" name="link" value="{{ old('link') }}" class="form-control" placeholder="Product Link">
+                  <label for="">Product Demo Link</label>
+                  <input type="text" name="link" value="{{ old('link') }}" class="form-control" placeholder="Product Demo Link">
                 </div>
               </div>
             </div>
@@ -51,10 +51,10 @@
                 </div>
               </div>
               <div class="col-6">
-                  <div class="form-group">
-                    <label for="">Layout</label>
-                    <input type="text" class="form-control" name="layout" value="{{ old('layout', 'Responsive') }}" placeholder="Layout">
-                  </div>
+                <div class="form-group">
+                  <label for="download_link">Product Demo Link</label>
+                  <input type="text" id="download_link" name="download_link" value="{{ old('download_link') }}" class="form-control" placeholder="Product Download Link">
+                </div>
               </div>
             </div>
             <div class="row">
@@ -82,6 +82,10 @@
                   <div class="form-group">
                     <label for="">License</label>
                     <input type="text" class="form-control" name="license" value="{{ old('license', 'MIT') }}" placeholder="License">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Layout</label>
+                    <input type="text" class="form-control" name="layout" value="{{ old('layout', 'Responsive') }}" placeholder="Layout">
                   </div>
                   <div class="form-group">
                     <label for="">Choose Product Image</label>

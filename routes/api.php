@@ -23,3 +23,4 @@ Route::get('/testimonial', 'ApiController@testimonial');
 Route::post('/contact', 'ApiController@contact');
 
 Route::get('/products', 'ApiController@products');
+Route::get('/product/{slug}', 'ApiController@product_details');

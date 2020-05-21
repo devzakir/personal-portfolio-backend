@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('category_name');
             $table->string('link');
+            $table->string('download_link')->nullable();
             $table->string('image');
             $table->decimal('price', 8,2)->default(0);
             $table->string('version')->nullable();
