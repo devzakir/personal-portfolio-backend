@@ -16,11 +16,14 @@ class CourseVideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $videos = CourseVideo::latest()->paginate(30);
+        $section = CourseSection::find($id);
+        if($section){
+            $videos = CourseVideo::where('section_id', $section->id)->get();
 
-        return view('admin.course-video.index', compact('videos'));
+            return view('admin.course-video.index', compact(['videos', 'section']));
+        }
     }
 
     /**
@@ -28,12 +31,16 @@ class CourseVideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $sections = CourseSection::all();
-        $courses = Course::all();
+        $section = CourseSection::find($id);
 
-        return view('admin.course-video.create', compact(['sections', 'courses']));
+        if($section){
+            $sections = CourseSection::where('course_id', $section->course_id)->get();
+            $courses = Course::where('id', $section->course_id)->get();
+
+            return view('admin.course-video.create', compact(['sections', 'courses', 'section']));
+        }
     }
 
     /**
@@ -42,7 +49,7 @@ class CourseVideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $this->validate($request, [
             'title' => 'required',
@@ -56,8 +63,8 @@ class CourseVideoController extends Controller
             'video' => $request->video,
             'download_url' => $request->download_url,
             'download_count' => $request->download_count,
-            'course_id' => $request->course_id,
-            'section_id' => $request->section_id,
+            'course_id' => $request->course,
+            'section_id' => $request->section,
         ]);
 
         Session::flash('success', 'Course Video created successfully');
@@ -81,13 +88,18 @@ class CourseVideoController extends Controller
      * @param  \App\CourseVideo  $courseVideo
      * @return \Illuminate\Http\Response
      */
-    public function edit(CourseVideo $courseVideo)
+    public function edit($id, $videoId)
     {
-        $section = CourseSection::all();
-        $courses = Course::all();
-        $video = $courseVideo;
+        $section = CourseSection::find($id);
 
-        return view('admin.course-video.edit', compact(['video', 'section', 'courses']));
+        if($section){
+
+            $sections = CourseSection::where('course_id', $section->course_id)->get();
+            $courses = Course::where('id', $section->course_id)->get();
+            $video = CourseVideo::find($videoId);
+
+            return view('admin.course-video.edit', compact(['video', 'sections', 'courses', 'section']));
+        }
     }
 
     /**
@@ -97,13 +109,15 @@ class CourseVideoController extends Controller
      * @param  \App\CourseVideo  $courseVideo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseVideo $courseVideo)
+    public function update(Request $request, $id, $videoId)
     {
+        $section = CourseSection::find($id);
+        $video = CourseVideo::find($videoId);
+
         $this->validate($request, [
             'title' => 'required',
         ]);
 
-        $video = $courseVideo;
         $video->title = $request->title;
         $video->slug = Str::slug($request->title);
         $video->video_time = $request->video_time;
@@ -111,8 +125,8 @@ class CourseVideoController extends Controller
         $video->video = $request->video;
         $video->download_url = $request->download_url;
         $video->download_count = $request->download_count;
-        $video->course_id = $request->course_id;
-        $video->section_id = $request->section_id;
+        $video->course_id = $request->course;
+        $video->section_id = $request->section;
         $video->save();
 
         Session::flash('success', 'Course Video updated successfully');
@@ -125,10 +139,9 @@ class CourseVideoController extends Controller
      * @param  \App\CourseVideo  $courseVideo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseVideo $courseVideo)
+    public function destroy($id, $videoId)
     {
-        $video = $courseVideo;
-
+        $video = CourseVideo::find($videoId);
         if($video){
             $video->delete();
 

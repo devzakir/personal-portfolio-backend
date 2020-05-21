@@ -5,7 +5,10 @@
         <div class="card card-default">
             <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
                 <h2>All Course Videos</h2>
-                <a href="{{ route('course-video.create') }}" class="btn btn-primary">Create Course Video</a>
+                <div>
+                    <a href="{{ route('course.section.index', ['id' => $section->id]) }}" class="btn btn-warning">Course Section List</a>
+                    <a href="{{ route('course.video.create', ['id' => $section->id]) }}" class="btn btn-primary">Create Course Video</a>
+                </div>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
@@ -24,14 +27,14 @@
                         <tr>
                             <td>{{ $video->id }}</td>
                             <td>{{ $video->title }}</td>
-                            <td>{{ $video->course }}</td>
-                            <td>{{ $video->section }}</td>
+                            <td>{{ $video->course->title }}</td>
+                            <td>{{ $video->section->name }}</td>
                             <td class="d-flex" style="width:150px">
-                                <a href="{{ route('course-video.edit', $video->id) }}"
+                                <a href="{{ route('course.video.edit', ['id' => $video->section_id, 'videoId' => $video->id]) }}"
                                     class="btn btn-success btn-sm"> <span class="mdi mdi-square-edit-outline"></span>
                                 </a>
                                 <a href="#" class="btn btn-primary btn-sm ml-1"> <span class="mdi mdi-eye"></span> </a>
-                                <form action="{{ route('course-video.destroy', $video->id) }}" method="post"
+                                <form action="{{ route('course.video.destroy', ['id' => $video->section_id, 'videoId' => $video->id]) }}" method="post"
                                     class="ml-1">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"> <span
