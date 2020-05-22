@@ -41,7 +41,7 @@
                                 @endif
                             </td>
                             <td> {{ $course->category->name }} </td>
-                            <td> {{ $course->user_id }} </td>
+                            <td> {{ $course->user->name }} </td>
                             <td> 
                                 @if($course->sale_price)
                                     {{ $course->sale_price }} <span style="text-decoration: line-through;">{{ $course->price }}</span>
