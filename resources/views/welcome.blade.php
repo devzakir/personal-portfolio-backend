@@ -23,9 +23,6 @@
                     <li class="nav-item {{ Route::is('website.home') ? 'active' : '' }}">
                         <a class="nav-link" href="https://api.loovum.com">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item {{ Route::is('login') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('login') }}">Login Here</a>
-                    </li>
                 </ul>
             </div>
         </div>
