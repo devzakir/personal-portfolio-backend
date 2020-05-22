@@ -40,7 +40,7 @@
                                     <div class="badge badge-primary">Coming Soon</div>
                                 @endif
                             </td>
-                            <td> {{ $course->category_id }} </td>
+                            <td> {{ $course->category->name }} </td>
                             <td> {{ $course->user_id }} </td>
                             <td> 
                                 @if($course->sale_price)
