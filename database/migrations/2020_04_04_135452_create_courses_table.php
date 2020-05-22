@@ -24,6 +24,7 @@ class CreateCoursesTable extends Migration
             $table->string('image');
             $table->string('video');
             $table->text('description');
+            $table->boolean('coming_soon')->default(false);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('course_categories')->onDelete('cascade');

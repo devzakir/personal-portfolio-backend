@@ -60,13 +60,19 @@ class CourseController extends Controller
             'description' => $request->description,
         ]);
 
+        if($request->coming_soon == "on"){
+            $course->coming_soon = true;
+        }else {
+            $course->coming_soon = false;
+        }
+
         if($request->hasFile('image')){
             $image = $request->image;
             $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image->move(public_path('storage/portfolio/'), $image_new_name);
             $course->image = 'storage/portfolio/' . $image_new_name;
-            $course->save();
         }
+        $course->save();
         if($course){
             Session::flash('succcess', 'Course created successfully');
         }
@@ -127,6 +133,13 @@ class CourseController extends Controller
             $image->move(public_path('storage/portfolio/'), $image_new_name);
             $course->image = 'storage/portfolio/' . $image_new_name;
         }
+
+        if($request->coming_soon == "on"){
+            $course->coming_soon = true;
+        }else {
+            $course->coming_soon = false;
+        }
+
         $course->save();
 
         if($course){

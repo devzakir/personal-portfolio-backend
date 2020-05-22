@@ -34,7 +34,12 @@
                                     <img src="{{ asset($course->image) }}" alt="" class="img-fluid">
                                 </div>
                             </td>
-                            <td> {{ $course->title }} </td>
+                            <td> 
+                                {{ $course->title }} 
+                                @if($course->coming_soon)
+                                    <div class="badge badge-primary">Coming Soon</div>
+                                @endif
+                            </td>
                             <td> {{ $course->category_id }} </td>
                             <td> {{ $course->user_id }} </td>
                             <td> 

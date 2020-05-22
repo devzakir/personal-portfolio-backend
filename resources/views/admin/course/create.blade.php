@@ -62,6 +62,12 @@
                                 <label for="description">Description</label>
                                 <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter description"></textarea>
                             </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" name="coming_soon" id="customSwitch1">
+                                    <label class="custom-control-label" for="customSwitch1">Coming Soon</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-footer pt-4 pt-5 mt-4 border-top">
