@@ -50,7 +50,7 @@ class CourseController extends Controller
 
         $course = Course::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->slug),
+            'slug' => Str::slug($request->title),
             'category_id' => $request->category,
             'user_id' => auth()->user()->id,
             'price' => $request->price,
@@ -119,7 +119,7 @@ class CourseController extends Controller
         ]);
 
         $course->title = $request->title;
-        $course->slug = Str::slug($request->slug);
+        $course->slug = Str::slug($request->title);
         $course->category_id = $request->category;
         $course->user_id = auth()->user()->id;
         $course->price = $request->price;
