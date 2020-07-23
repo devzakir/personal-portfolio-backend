@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ Route::is('website.home') ? 'active' : '' }}">
-                        <a class="nav-link" href="https://api.loovum.com">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="https://api.zakirhossen.com">Home <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Course;
 use App\Mail\Contact as MailContact;
 use App\Portfolio;
 use App\Product;
@@ -62,6 +63,22 @@ class ApiController extends Controller
 
         if($product){
             return response()->json($product, 200);
+        }else {
+            return response()->json('failed', 404);
+        }
+    }
+
+    public function courses(){
+        $courses = Course::with('category')->latest()->paginate(9);
+
+        return response()->json($courses, 200);
+    }
+
+    public function course($slug){
+        $course = Course::with('sections', 'category')->where('slug', $slug)->first();
+
+        if($course){
+            return response()->json($course, 200);
         }else {
             return response()->json('failed', 404);
         }
