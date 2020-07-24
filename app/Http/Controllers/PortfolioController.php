@@ -86,7 +86,7 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Portfolio $portfolio)
-    {      
+    {
         $categories = PortfolioCategory::all();
         return view('admin.portfolio.edit', ['portfolio' => $portfolio, 'categories' => $categories]);
     }

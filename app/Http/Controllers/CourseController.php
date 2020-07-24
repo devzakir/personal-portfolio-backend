@@ -70,7 +70,7 @@ class CourseController extends Controller
             $image = $request->image;
             $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image->move(public_path('storage/portfolio/'), $image_new_name);
-            $course->image = 'storage/portfolio/' . $image_new_name;
+            $course->image = '/storage/portfolio/' . $image_new_name;
         }
         $course->save();
         if($course){
@@ -131,7 +131,7 @@ class CourseController extends Controller
             $image = $request->image;
             $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image->move(public_path('storage/portfolio/'), $image_new_name);
-            $course->image = 'storage/portfolio/' . $image_new_name;
+            $course->image = '/storage/portfolio/' . $image_new_name;
         }
 
         if($request->coming_soon == "on"){
