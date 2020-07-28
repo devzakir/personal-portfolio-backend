@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Course;
+use App\CourseSection;
 use App\Mail\Contact as MailContact;
 use App\Portfolio;
 use App\Product;
@@ -35,8 +36,8 @@ class ApiController extends Controller
     public function contact(Request $request){
         $this->validate($request, [
             'name' => 'required|string',
-            'email' => 'required|email', 
-            'subject' => 'required|string', 
+            'email' => 'required|email',
+            'subject' => 'required|string',
             'message' => 'required|min:20',
         ]);
 
@@ -46,7 +47,7 @@ class ApiController extends Controller
             'subject' => $request->subject,
             'message' => $request->message,
         ]);
-        
+
         Mail::to('web.zakirbd@gmail.com')->send(new MailContact($contact));
 
         return response()->json('success', 200);
@@ -75,7 +76,9 @@ class ApiController extends Controller
     }
 
     public function course($slug){
-        $course = Course::with('sections', 'category')->where('slug', $slug)->first();
+        $course = Course::with('category')->where('slug', $slug)->first();
+        $sections = CourseSection::with('videos')->where('course_id', $course->id)->get();
+        $course->sections = $sections;
 
         if($course){
             return response()->json($course, 200);
