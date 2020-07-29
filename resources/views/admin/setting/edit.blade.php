@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="form-group">
                         <label for="">Phone Number</label>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">About</label>
-                        <textarea name="about" rows="3" class="form-control" placeholder="About">{{ $setting->about }}</textarea>
+                        <textarea id="about" name="about" rows="3" class="form-control" placeholder="About">{{ $setting->about }}</textarea>
                     </div>
                 </div>
                 <div class="col-6">
@@ -88,9 +88,45 @@
                     </div>
                 </div>
             </div>
-            
+
         </form>
     </div>
 </div>
 
+@endsection
+
+@section('script')
+<script src="{{ asset('admin') }}/assets/js/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#about',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+        'bold italic backcolor | alignleft aligncenter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat | help',
+        // content_css: '//www.tiny.cloud/css/codepen.min.css'
+    });
+    // tinymce.init({
+    //     selector: 'textarea#about',
+    //     height: 100,
+    //     menubar: false,
+    //     plugins: [
+    //         'advlist autolink lists link image charmap print preview anchor',
+    //         'searchreplace visualblocks code fullscreen',
+    //         'insertdatetime media table paste code help wordcount'
+    //     ],
+    //     toolbar: 'undo redo | formatselect | ' +
+    //         'bold italic backcolor | alignleft aligncenter ' +
+    //         'alignright alignjustify | bullist numlist outdent indent | ' +
+    //         'removeformat | help',
+    //     content_css: '//www.tiny.cloud/css/codepen.min.css'
+    // });
+</script>
 @endsection

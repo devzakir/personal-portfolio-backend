@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Billing;
 use App\Contact;
 use App\Course;
 use App\CourseSection;
@@ -70,7 +71,7 @@ class ApiController extends Controller
     }
 
     public function courses(){
-        $courses = Course::with('category')->latest()->paginate(9);
+        $courses = Course::with('category')->orderBy('coming_soon', 'asc')->paginate(9);
 
         return response()->json($courses, 200);
     }
@@ -85,5 +86,24 @@ class ApiController extends Controller
         }else {
             return response()->json('failed', 404);
         }
+    }
+
+    public function store_billing(Request $request){
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|max:255|email',
+            'phone' => 'required|max:255',
+            'address' => 'required|max:255'
+        ]);
+
+        $billing = Billing::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'user_id' => auth('api')->user()->id,
+        ]);
+
+        return response()->json($billing, 200);
     }
 }

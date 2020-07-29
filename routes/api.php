@@ -35,3 +35,6 @@ Route::get('/product/{slug}', 'ApiController@product_details');
 
 Route::get('/courses', 'ApiController@courses');
 Route::get('/course/{slug}', 'ApiController@course');
+
+Route::post('billing', 'ApiController@store_billing');
+Route::get('billing', 'ApiController@get_billing');

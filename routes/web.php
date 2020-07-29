@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     Route::get('/profile/edit',  'UserController@edit_profile')->name('profile.edit');
     Route::post('/profile/update',  'UserController@update_profile')->name('profile.update');
 
-    // product 
+    // product
     Route::resource('product', 'ProductController');
     Route::resource('product-category', 'ProductCategoryController');
 
@@ -46,11 +46,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
 
     // testimonial
     Route::resource('testimonial', 'TestimonialController');
-    
+
     // Setting Route
     Route::get('setting', 'SettingController@edit')->name('setting.index');
     Route::post('setting', 'SettingController@update')->name('setting.update');
-    
+
     // Contact route
     Route::resource('contact', 'ContactController');
 
@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
 
     Route::resource('course-video', 'CourseVideoController');
 
+    Route::resource('billing', 'BillingController');
+
     // Resource Routes
     Route::get('/route',  'Controller@index')->name('route.index');
     Route::get('/route/create',  'Controller@create')->name('route.create');
@@ -83,4 +85,5 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     Route::get('/route/delete/{id}',  'Controller@destroy')->name('route.delete');
     Route::post('/route/store',  'Controller@store')->name('route.store');
     Route::post('/route/update/{id}',  'Controller@update')->name('route.update');
+
 });
