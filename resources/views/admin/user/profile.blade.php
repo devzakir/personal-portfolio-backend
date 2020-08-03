@@ -26,7 +26,7 @@
           </div>
           <div class="form-group">
             <label for="">Phone Number</label>
-            <input type="text" class="form-control" name="phone_number" value="{{ $user->phone_number }}" placeholder="Enter Phone">
+            <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" placeholder="Enter Phone">
           </div>
           <div class="form-group">
             <label for="">New Password</label>

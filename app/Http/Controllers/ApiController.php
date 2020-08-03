@@ -7,6 +7,7 @@ use App\Contact;
 use App\Course;
 use App\CourseSection;
 use App\Mail\Contact as MailContact;
+use App\Order;
 use App\Portfolio;
 use App\Product;
 use App\Setting;
@@ -88,22 +89,49 @@ class ApiController extends Controller
         }
     }
 
-    public function store_billing(Request $request){
+    // public function store_billing(Request $request){
+    //     $this->validate($request, [
+    //         'name' => 'required|max:255',
+    //         'email' => 'required|max:255|email',
+    //         'phone' => 'required|max:255',
+    //         'address' => 'required|max:255'
+    //     ]);
+
+    //     $billing = Billing::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'phone' => $request->phone,
+    //         'address' => $request->address,
+    //         'user_id' => auth('api')->user()->id,
+    //     ]);
+
+    //     return response()->json($billing, 200);
+    // }
+
+    public function purchase(Request $request){
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|max:255|email',
-            'phone' => 'required|max:255',
-            'address' => 'required|max:255'
+            'course_id' => 'required',
         ]);
 
-        $billing = Billing::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'user_id' => auth('api')->user()->id,
-        ]);
+        $user = auth('api')->user();
+        $course = Course::find($request->course_id);
+        if($course){
+            $price = $course->sale_price || $course->price;
 
-        return response()->json($billing, 200);
+            $order = Order::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'amount' => $price,
+                'payment_method' => 'bkash',
+                'payment_status' => 4,
+                'course_id' => $course->id,
+                'user_id' => $user->id,
+            ]);
+
+            return response()->json($order, 200);
+        }else {
+            return response()->json('failed', 404);
+        }
     }
 }
