@@ -20,20 +20,24 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'auth' ], function ($router) {
     Route::post('register', 'ApiAuthController@register');
 });
 
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('auth/courses', 'ApiController@auth_courses');
 });
 
+// home page
 Route::get('/setting', 'ApiController@setting');
 Route::get('/portfolio', 'ApiController@portfolio');
 Route::get('/testimonial', 'ApiController@testimonial');
 Route::post('/contact', 'ApiController@contact');
 
+// products page
 Route::get('/products', 'ApiController@products');
 Route::get('/product/{slug}', 'ApiController@product_details');
 
+// course page
 Route::get('/courses', 'ApiController@courses');
 Route::get('/course/{slug}', 'ApiController@course');
 
+// checkout page
 Route::post('purchase', 'ApiController@purchase');
+Route::post('unlock-course', 'ApiController@unlock_course');

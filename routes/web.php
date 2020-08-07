@@ -86,4 +86,6 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     Route::post('/route/store',  'Controller@store')->name('route.store');
     Route::post('/route/update/{id}',  'Controller@update')->name('route.update');
 
+    // Order routes
+    Route::resource('order', 'OrderController');
 });

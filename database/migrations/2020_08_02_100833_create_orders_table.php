@@ -24,8 +24,10 @@ class CreateOrdersTable extends Migration
             $table->string('coupon_code')->nullable();
             $table->integer('discount_amount')->nullable();
             $table->string('payment_method')->default('bkash');
-            $table->string('payment_verification')->nullable();
             $table->integer('payment_status')->default(4); // 4 = pending, 3 = review, 2 = rejected, 1 = success,
+            $table->string('payment_sender')->nullable();
+            $table->string('verify_code')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

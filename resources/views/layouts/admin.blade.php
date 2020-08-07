@@ -52,6 +52,18 @@
                 <span class="nav-text">Dashboard</span>
               </a>
             </li>
+            <li class="has-sub  @if(request()->is('admin-panel/orders*')) active @endif">
+              <a class="sidenav-item-link" href="{{ route('order.index') }}">
+                <i class="mdi mdi-account-group"></i>
+                <span class="nav-text">Orders</span>
+              </a>
+            </li>
+            <li class="has-sub  @if(request()->is('admin-panel/course*')) active @endif">
+              <a class="sidenav-item-link" href="{{ route('course.index') }}">
+                <i class="mdi mdi-account-group"></i>
+                <span class="nav-text">Course</span>
+              </a>
+            </li>
             <li class="has-sub  @if(request()->is('admin-panel/product*')) active @endif">
               <a class="sidenav-item-link" href="{{ route('product.index') }}">
                 <i class="mdi mdi-account-group"></i>
@@ -68,12 +80,6 @@
               <a class="sidenav-item-link" href="{{ route('testimonial.index') }}">
                 <i class="mdi mdi-account-group"></i>
                 <span class="nav-text">Testimonial</span>
-              </a>
-            </li>
-            <li class="has-sub  @if(request()->is('admin-panel/course*')) active @endif">
-              <a class="sidenav-item-link" href="{{ route('course.index') }}">
-                <i class="mdi mdi-account-group"></i>
-                <span class="nav-text">Course</span>
               </a>
             </li>
             <li class="has-sub  @if(request()->is('admin-panel/contact*')) active @endif">

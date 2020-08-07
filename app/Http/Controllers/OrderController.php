@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with('course')->latest()->paginate(20);
+
+        return view('admin.order.index', compact('orders'));
     }
 
     /**
@@ -46,7 +48,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('admin.order.show', compact('order'));
     }
 
     /**
@@ -57,7 +59,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('admin.order.edit', compact('order'));
     }
 
     /**
@@ -69,7 +71,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $this->validate($request, [
+            'payment_status' => 'required',
+        ]);
+
+        $order->payment_status = $request->payment_status;
+        $order->save();
+
+        return redirect()->back();
     }
 
     /**

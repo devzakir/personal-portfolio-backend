@@ -116,7 +116,7 @@ class ApiController extends Controller
         $user = auth('api')->user();
         $course = Course::find($request->course_id);
         if($course){
-            $price = $course->sale_price || $course->price;
+            $price = $course->sale_price ? $course->sale_price : $course->price;
 
             $order = Order::create([
                 'name' => $user->name,
@@ -132,6 +132,39 @@ class ApiController extends Controller
             return response()->json($order, 200);
         }else {
             return response()->json('failed', 404);
+        }
+    }
+
+    public function unlock_course(Request $request){
+        $user = auth('api')->user();
+        if($user){
+            $order = Order::where('course_id', $request->course_id)->where('user_id', $user->id)->first();
+            if($order){
+                $order->payment_sender = $request->sender;
+                $order->verify_code = $request->trxid;
+                $order->payment_status = 3;
+                $order->save();
+
+                return response()->json('success', 200);
+            }else {
+                return response()->json('failed', 404);
+            }
+        }else {
+            return response()->json('failed', 401);
+        }
+    }
+
+    public function auth_courses(Request $request)
+    {
+        $user = auth('api')->user();
+
+        if($user){
+            // $courses = Order::with('course')->where('payment_status', 1)->where('user_id', $user->id)->get();
+            $courses = Order::with('course')->where('user_id', $user->id)->get();
+
+            return response()->json($courses, 200);
+        }else {
+            return response()->json('failed', 401);
         }
     }
 }
