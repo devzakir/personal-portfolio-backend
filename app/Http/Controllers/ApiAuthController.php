@@ -140,4 +140,12 @@ class ApiAuthController extends Controller
         $token = auth('api')->login($user);
         return $this->respondWithToken($token);
     }
+
+    public function update_user(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'sometimes|min:8|confirmed',
+        ]);
+    }
 }

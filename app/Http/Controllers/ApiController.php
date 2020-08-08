@@ -6,6 +6,7 @@ use App\Billing;
 use App\Contact;
 use App\Course;
 use App\CourseSection;
+use App\CourseVideo;
 use App\Mail\Contact as MailContact;
 use App\Order;
 use App\Portfolio;
@@ -14,6 +15,7 @@ use App\Setting;
 use App\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Expr\FuncCall;
 
 class ApiController extends Controller
 {
@@ -165,6 +167,18 @@ class ApiController extends Controller
             return response()->json($courses, 200);
         }else {
             return response()->json('failed', 401);
+        }
+    }
+
+    public function lesson_data($course, $lesson){
+        $course = Course::where('slug', $course)->first();
+
+        if($course){
+            $lesson = CourseVideo::where('slug', $lesson)->first();
+
+            return response()->json($lesson, 200);
+        }else{
+            return response()->json('failed', 404);
         }
     }
 }
