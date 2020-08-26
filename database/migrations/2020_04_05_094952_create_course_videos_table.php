@@ -22,6 +22,7 @@ class CreateCourseVideosTable extends Migration
             $table->string('video')->nullable();
             $table->string('download_url')->nullable();
             $table->integer('download_count')->nullable();
+            $table->boolean('coming_soon')->default(false);
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('section_id');
             $table->timestamps();
