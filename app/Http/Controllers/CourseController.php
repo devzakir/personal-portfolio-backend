@@ -46,6 +46,11 @@ class CourseController extends Controller
             'price' => 'required',
             'image' => 'required|image|max:2048',
             'description' => 'required',
+            'short_description' => 'required',
+            'duration' => 'required',
+            'videos' => 'required',
+            'projects' => 'required',
+            'level' => 'required',
         ]);
 
         $course = Course::create([
@@ -58,6 +63,12 @@ class CourseController extends Controller
             'image' => 'image',
             'video' => $request->video,
             'description' => $request->description,
+            'highlight' => $request->highlight,
+            'short_description' => $request->short_description,
+            'duration' => $request->duration,
+            'videos' => $request->videos,
+            'projects' => $request->projects,
+            'level' => $request->level,
         ]);
 
         if($request->coming_soon == "on"){
@@ -73,6 +84,7 @@ class CourseController extends Controller
             $course->image = '/storage/portfolio/' . $image_new_name;
         }
         $course->save();
+
         if($course){
             Session::flash('succcess', 'Course created successfully');
         }
@@ -125,7 +137,13 @@ class CourseController extends Controller
         $course->price = $request->price;
         $course->sale_price = $request->sale_price;
         $course->video = $request->video;
+        $course->highlight = $request->highlight;
         $course->description = $request->description;
+        $course->short_description = $request->short_description;
+        $course->duration = $request->duration;
+        $course->videos = $request->videos;
+        $course->projects = $request->projects;
+        $course->level = $request->level;
 
         if($request->hasFile('image')){
             $image = $request->image;
@@ -143,7 +161,7 @@ class CourseController extends Controller
         $course->save();
 
         if($course){
-            Session::flash('succcess', 'Course created successfully');
+            Session::flash('succcess', 'Course updated successfully');
         }
         return redirect()->route('course.index');
     }

@@ -138,10 +138,18 @@ class ApiController extends Controller
     }
 
     public function unlock_course(Request $request){
+        $this->validate($request, [
+            'course_id' => 'required',
+            'sender' => 'required',
+            'trxid' => 'required',
+        ]);
+
         $user = auth('api')->user();
         if($user){
             $order = Order::where('course_id', $request->course_id)->where('user_id', $user->id)->first();
-            if($order){
+            if($order->payment_status == 1 && $order->status){
+                return response()->json('success', 200);
+            }elseif($order){
                 $order->payment_sender = $request->sender;
                 $order->verify_code = $request->trxid;
                 $order->payment_status = 3;

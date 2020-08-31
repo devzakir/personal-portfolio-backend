@@ -14,7 +14,7 @@
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/sleek.css" />
   <link id="sleek-css" rel="stylesheet" href="{{ asset('admin') }}/assets/css/zakir.css" />
   <link href="{{ asset('admin') }}/assets/img/favicon.png" rel="shortcut icon" />
-  @yeild('style')
+  @yield('style')
   <script src="{{ asset('admin') }}/assets/plugins/nprogress/nprogress.js"></script>
 </head>
 <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">

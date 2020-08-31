@@ -38,6 +38,12 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" name="coming_soon" id="customSwitch1" @if($video->coming_soon) checked @endif>
+                                    <label class="custom-control-label" for="customSwitch1">Coming Soon</label>
+                                </div>
+                            </div>
                             <div class="form-group text-center"><button type="submit" class="btn btn-success">Update Course Section </button></div>
                         </form>
                     </div>

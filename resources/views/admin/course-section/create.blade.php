@@ -5,7 +5,10 @@
         <div class="card card-default">
             <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
                 <h2>Create Course Section</h2>
-                <a href="{{ route('course.section.index', ['id' => $course->id]) }}" class="btn btn-primary">Go back to Course Sections</a>
+                <div>
+
+                    <a href="{{ route('course.section.index', ['id' => $course->id]) }}" class="btn btn-primary">Go back to Course Sections</a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">

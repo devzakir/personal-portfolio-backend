@@ -67,6 +67,13 @@ class CourseVideoController extends Controller
             'section_id' => $request->section,
         ]);
 
+        if($request->coming_soon == "on"){
+            $video->coming_soon = true;
+        }else {
+            $video->coming_soon = false;
+        }
+        $video->save();
+
         Session::flash('success', 'Course Video created successfully');
         return redirect()->back();
     }
@@ -93,7 +100,6 @@ class CourseVideoController extends Controller
         $section = CourseSection::find($id);
 
         if($section){
-
             $sections = CourseSection::where('course_id', $section->course_id)->get();
             $courses = Course::where('id', $section->course_id)->get();
             $video = CourseVideo::find($videoId);
@@ -127,6 +133,13 @@ class CourseVideoController extends Controller
         $video->download_count = $request->download_count;
         $video->course_id = $request->course;
         $video->section_id = $request->section;
+
+        if($request->coming_soon == "on"){
+            $video->coming_soon = true;
+        }else {
+            $video->coming_soon = false;
+        }
+
         $video->save();
 
         Session::flash('success', 'Course Video updated successfully');
