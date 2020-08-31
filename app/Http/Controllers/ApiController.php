@@ -84,8 +84,24 @@ class ApiController extends Controller
         $sections = CourseSection::with('videos')->where('course_id', $course->id)->get();
         $course->sections = $sections;
 
+        $purchase = null;
+        $user = auth('api')->user();
+
+        if($user){
+            $order = Order::where('course_id', $course->id)->where('user_id', $user->id)->first();
+
+            if($order){
+                $purchase = true;
+            }else {
+                $purchase = false;
+            }
+        }
+
         if($course){
-            return response()->json($course, 200);
+            return response()->json([
+                'course' => $course,
+                'purchase' => $purchase,
+            ], 200);
         }else {
             return response()->json('failed', 404);
         }

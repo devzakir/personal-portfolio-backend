@@ -26,6 +26,14 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'auth' ], function ($router) {
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('auth/courses', 'ApiController@auth_courses');
     Route::post('auth/update', 'ApiAuthController@update_user');
+
+    // checkout page
+    Route::post('purchase', 'ApiController@purchase');
+    Route::post('unlock-course', 'ApiController@unlock_course');
+
+    // Course Watch Page
+    Route::get('course/access/{slug}', 'ApiController@course_access');
+    Route::get('watch/{course}/{slug}', 'ApiController@lesson_data');
 });
 
 // home page
@@ -41,11 +49,3 @@ Route::get('/product/{slug}', 'ApiController@product_details');
 // course page
 Route::get('/courses', 'ApiController@courses');
 Route::get('/course/{slug}', 'ApiController@course');
-
-// checkout page
-Route::post('purchase', 'ApiController@purchase');
-Route::post('unlock-course', 'ApiController@unlock_course');
-
-// Course Watch Page
-Route::get('course/access/{slug}', 'ApiController@course_access');
-Route::get('watch/{course}/{slug}', 'ApiController@lesson_data');
