@@ -76,6 +76,9 @@ class OrderController extends Controller
         ]);
 
         $order->payment_status = $request->payment_status;
+        if($request->payment_status == 1){
+            $order->status = true;
+        }
         $order->save();
 
         return redirect()->back();
