@@ -131,6 +131,12 @@ class ApiController extends Controller
                 'user_id' => $user->id,
             ]);
 
+            if($price < 1){
+                $order->payment_status = 1;
+                $order->status = true;
+                $order->save();
+            }
+
             return response()->json($order, 200);
         }else {
             return response()->json('failed', 404);
