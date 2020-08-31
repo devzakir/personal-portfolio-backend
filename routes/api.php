@@ -47,4 +47,5 @@ Route::post('purchase', 'ApiController@purchase');
 Route::post('unlock-course', 'ApiController@unlock_course');
 
 // Course Watch Page
+Route::get('course/access/{slug}', 'ApiController@course_access');
 Route::get('watch/{course}/{slug}', 'ApiController@lesson_data');

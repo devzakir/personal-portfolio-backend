@@ -189,4 +189,20 @@ class ApiController extends Controller
             return response()->json('failed', 404);
         }
     }
+
+    public function course_access($slug){
+        $course = Course::where('slug', $slug)->first();
+        $user = auth('api')->user();
+        if($course){
+            $order = Order::where('course_id', $course->id)->where('user_id', $user->id)->first();
+
+            if($order->payment_status == 1 && $order->status){
+                return response()->json('success', 200);
+            }else{
+                return response()->json('failed', 404);
+            }
+        }else{
+            return response()->json('failed', 404);
+        }
+    }
 }
