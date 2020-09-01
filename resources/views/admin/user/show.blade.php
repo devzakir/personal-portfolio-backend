@@ -37,9 +37,9 @@
               <h5 class="text-dark mb-1">Contact Information</h5>
               <p class="text-dark font-weight-medium pt-4 mb-2">Email address</p>
               <p>{{ $user->email }}</p>
-              @if($user->phone_number)
+              @if($user->phone)
               <p class="text-dark font-weight-medium pt-4 mb-2">Phone Number</p>
-              <p>{{ $user->phone_number }}</p>
+              <p>{{ $user->phone }}</p>
               @endif
               <p class="text-dark font-weight-medium pt-4 mb-2">User Role</p>
               <p> {{ $user->role->name }} </p>

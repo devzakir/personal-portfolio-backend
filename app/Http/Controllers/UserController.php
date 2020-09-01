@@ -56,13 +56,13 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'role_id' => $request->role,
         ]);
-        
+
         if($request->hasFile('avatar')){
             $image = $request->avatar;
             $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image_new_name = str_replace(" ", "_", $image_new_name);
             $image->move('storage/user/', $image_new_name);
-            
+
             $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -73,7 +73,7 @@ class UserController extends Controller
             $user->avatar = '/storage/user/'. $image_new_name;
             $user->save();
         }
-        
+
         Session::flash('success', 'User Profile Created Successfully');
         return redirect()->route('user.index');
     }
@@ -128,7 +128,7 @@ class UserController extends Controller
             $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image_new_name = str_replace(" ", "_", $image_new_name);
             $image->move('storage/user/', $image_new_name);
-            
+
             $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -139,7 +139,7 @@ class UserController extends Controller
             }else {
                 $img->save();
             }
-            
+
             if(file_exists(public_path($old_image))){
                 unlink(public_path($old_image));
             }
@@ -147,9 +147,9 @@ class UserController extends Controller
             $user->avatar = '/storage/user/'. $image_new_name;
             $user->save();
         }
-        
+
         $user->role_id = $request->role;
-        
+
         if($request->password !== null ){
             $user->password = bcrypt($request->password);
         }
@@ -182,18 +182,18 @@ class UserController extends Controller
 
     public function edit_profile(){
         $user = Auth::user();
-        // return $user->phone_number;
+        // return $user->phone;
         return view('admin.user.profile')->with('user', $user);
     }
 
     public function update_profile(Request $request){
         // dd($request->all());
         $this->validate($request, [
-            'name' => 'required', 
+            'name' => 'required',
             'email' => 'required',
             'avatar' => 'sometimes|image|max:2048',
         ]);
-        
+
         $user = Auth::user();
 
         if($request->name){
@@ -204,8 +204,8 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
         }
 
-        if($request->phone_number){
-            $user->phone_number = $request->phone_number;
+        if($request->phone){
+            $user->phone = $request->phone;
         }
 
         if($request->hasFile('avatar')){
@@ -214,19 +214,19 @@ class UserController extends Controller
             $image_new_name = time() .'_.'. $image->getClientOriginalExtension();
             $image_new_name = str_replace(" ", "_", $image_new_name);
             $image->move('storage/user/', $image_new_name);
-            
+
             $img = Image::make(public_path('storage/user/'. $image_new_name));
             $img->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            
+
             if($img->height() > 200){
                 $img->crop(200,200,0,0)->save();
             }else {
                 $img->save();
             }
-            
+
             if($old_image){
                 if(file_exists(public_path($old_image))){
                     unlink(public_path($old_image));

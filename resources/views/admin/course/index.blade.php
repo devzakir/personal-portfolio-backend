@@ -5,7 +5,7 @@
     <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
         <h2>Courses List</h2>
         <div>
-            <a href="{{ route('course-category.index') }}" class="btn btn-primary">Course Category</a>
+            <a href="{{ route('course-category.index') }}" class="btn btn-warning text-dark">Course Category</a>
             <a href="{{ route('course.create') }}" class="btn btn-primary">Create Course</a>
         </div>
     </div>
@@ -34,18 +34,18 @@
                                     <img src="{{ asset($course->image) }}" alt="" class="img-fluid">
                                 </div>
                             </td>
-                            <td> 
-                                {{ $course->title }} 
+                            <td>
+                                {{ $course->title }}
                                 @if($course->coming_soon)
                                     <div class="badge badge-primary">Coming Soon</div>
                                 @endif
                             </td>
                             <td> {{ $course->category->name }} </td>
                             <td> {{ $course->user->name }} </td>
-                            <td> 
+                            <td>
                                 @if($course->sale_price)
                                     {{ $course->sale_price }} <span style="text-decoration: line-through;">{{ $course->price }}</span>
-                                @else 
+                                @else
                                     {{ $course->price }}
                                 @endif
                             </td>
@@ -54,9 +54,9 @@
                                 <a href="{{ route('course.show', $course->id) }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-eye"></i> </a>
                                 <a href="{{ route('course.section.index', ['id' => $course->id]) }}" class="mr-1 btn btn-success btn-sm"> <i class="mdi mdi-menu"></i> </a>
                                 <form action="{{ route('course.destroy', $course->id) }}" method="post">
-                                    @csrf 
+                                    @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"> 
+                                    <button type="submit" class="btn btn-danger btn-sm">
                                         <i class="mdi mdi-trash-can"></i>
                                     </button>
                                 </form>

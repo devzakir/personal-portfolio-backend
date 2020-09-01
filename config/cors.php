@@ -31,7 +31,8 @@ return [
     /*
      * Matches the request origin. `[*]` allows all origins.
      */
-    'allowed_origins' => ['https://zakirhossen.com'],
+    // 'allowed_origins' => ['https://zakirhossen.com'],
+    'allowed_origins' => ['*'],
 
     /*
      * Matches the request origin with, similar to `Request::is()`
