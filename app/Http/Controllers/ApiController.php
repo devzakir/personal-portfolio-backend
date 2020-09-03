@@ -152,6 +152,7 @@ class ApiController extends Controller
                 $order->status = true;
                 $order->save();
             }
+            $course->increment('enrollment');
 
             return response()->json($order, 200);
         }else {
@@ -192,7 +193,7 @@ class ApiController extends Controller
 
         if($user){
             // $courses = Order::with('course')->where('payment_status', 1)->where('user_id', $user->id)->get();
-            $courses = Order::with('course')->where('user_id', $user->id)->get();
+            $courses = Order::with('course')->latest()->where('user_id', $user->id)->get();
 
             return response()->json($courses, 200);
         }else {

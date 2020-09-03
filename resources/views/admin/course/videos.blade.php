@@ -5,10 +5,10 @@
         <div class="card card-default">
             <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">
                 <h2>All Course Videos</h2>
-                <div>
+                {{-- <div>
                     <a href="{{ route('course.section.index', ['id' => $section->id]) }}" class="btn btn-warning">Course Section List</a>
                     <a href="{{ route('course.video.create', ['id' => $section->id]) }}" class="btn btn-primary">Create Course Video</a>
-                </div>
+                </div> --}}
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">

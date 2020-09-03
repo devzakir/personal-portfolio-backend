@@ -17,6 +17,7 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Course Name</th>
+                            <th>Total Lesson</th>
                             <th style="width:150px">Action</th>
                         </tr>
                     </thead>
@@ -26,7 +27,13 @@
                         <tr>
                             <td>{{ $section->id }}</td>
                             <td>{{ $section->name }}</td>
-                            <td>{{ $section->course->title }}</td>
+                            <td>
+                                {{ $section->course->title }}
+                                @if($section->course->coming_soon)
+                                    <div class="badge badge-primary">Coming Soon</div>
+                                @endif
+                            </td>
+                            <td>{{ $section->videos->count() }}</td>
                             <td class="d-flex" style="width:150px">
                                 <a href="{{ route('course.section.edit', ['id' => $course->id, 'sectionId' => $section->id]) }}" class="btn btn-success btn-sm mr-1">
                                     <span class="mdi mdi-square-edit-outline"></span>
@@ -41,7 +48,7 @@
                         </tr>
                         @endforeach
                         @else
-                        <tr> 
+                        <tr>
                             <td colspan="4">
                                 <h5 class="text-center pt-4 pb-4">No Sections Found</h5>
                             </td>

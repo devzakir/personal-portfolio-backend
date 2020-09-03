@@ -14,8 +14,13 @@ class CreateLessonStudentTable extends Migration
     public function up()
     {
         Schema::create('lesson_student', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('lesson_id');
             $table->timestamps();
+            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('lesson_id')->references('id')->on('course_videos')->onDelete('cascade');
         });
     }
 

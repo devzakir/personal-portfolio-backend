@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@welcome');
 
 Auth::routes();
 
@@ -56,6 +54,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
 
     // Course route
     Route::resource('course', 'CourseController');
+    Route::get('course/videos/{course}', 'CourseController@course_videos')->name('course.videos');
     Route::resource('course-category', 'CourseCategoryController');
     // Course Section
     Route::get('/course/{id}/section', 'CourseSectionController@index')->name('course.section.index');
@@ -73,7 +72,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin-panel'], fun
     Route::put('/course/section/{id}/video/{videoId}/update', 'CourseVideoController@update')->name('course.video.update');
     Route::delete('/course/section/{id}/video/{videoId}/delete', 'CourseVideoController@destroy')->name('course.video.destroy');
 
-    Route::resource('course-video', 'CourseVideoController');
+    // Route::resource('course-video', 'CourseVideoController');
 
     Route::resource('billing', 'BillingController');
 

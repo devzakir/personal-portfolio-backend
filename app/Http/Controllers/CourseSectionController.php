@@ -18,7 +18,7 @@ class CourseSectionController extends Controller
     {
         $course = Course::find($id);
         if($course){
-            $sections =  $course->sections;
+            $sections =  CourseSection::with('videos', 'course')->where('course_id', $course->id)->latest()->get();
 
             return view('admin.course-section.index', compact(['sections', 'course']));
         }else {
@@ -112,7 +112,7 @@ class CourseSectionController extends Controller
             'course' => 'required',
             'name' => 'required',
         ]);
-        
+
         $section = CourseSection::find($sectionId);
         $section->course_id = $request->course;
         $section->name = $request->name;
