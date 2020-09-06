@@ -152,6 +152,12 @@ class ApiController extends Controller
                 $order->status = true;
                 $order->save();
             }
+            $course->increment('enrollment');
+
+            $lesson = $course->lessons()->orderBy('created_at', 'asc')->where('coming_soon', false)->first();
+            if($lesson){
+                $lesson->users()->attach($user->id);
+            }
 
             return response()->json($order, 200);
         }else {
@@ -192,7 +198,7 @@ class ApiController extends Controller
 
         if($user){
             // $courses = Order::with('course')->where('payment_status', 1)->where('user_id', $user->id)->get();
-            $courses = Order::with('course')->where('user_id', $user->id)->get();
+            $courses = Order::with('course')->latest()->where('user_id', $user->id)->get();
 
             return response()->json($courses, 200);
         }else {
@@ -205,6 +211,13 @@ class ApiController extends Controller
 
         if($course){
             $lesson = CourseVideo::where('slug', $lesson)->first();
+
+            $user = auth('api')->user();
+            if($lesson){
+                if(!$lesson->users()->where('user_id', $user->id)->first()){
+                    $lesson->users()->attach($user->id);
+                }
+            }
 
             return response()->json($lesson, 200);
         }else{
@@ -223,6 +236,19 @@ class ApiController extends Controller
             }else{
                 return response()->json('failed', 404);
             }
+        }else{
+            return response()->json('failed', 404);
+        }
+    }
+
+    public function course_progress($slug){
+        $course = Course::where('slug', $slug)->first();
+        $user = auth('api')->user();
+
+        if($course){
+            $lesson = $user->lessons()->orderBy('created_at', 'desc')->where('course_id', $course->id)->first();
+
+            return response()->json($lesson, 200);
         }else{
             return response()->json('failed', 404);
         }

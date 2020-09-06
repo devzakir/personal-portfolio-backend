@@ -17,4 +17,8 @@ class DashboardController extends Controller
     public function analytics(){
         return view('admin.dashboard.index');
     }
+
+    public function welcome(){
+        return view('welcome');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use App\Course;
 use App\CourseCategory;
+use App\CourseVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest()->paginate(20);
+        $courses = Course::with('sections')->latest()->paginate(20);
         return view('admin.course.index', compact('courses'));
     }
 
@@ -183,5 +184,11 @@ class CourseController extends Controller
             Session::flash('success', 'Course deleted successfully');
         }
         return redirect()->back();
+    }
+
+    public function course_videos(Course $course){
+        $videos = CourseVideo::with('course', 'section')->where('course_id', $course->id)->latest()->get();
+
+        return view('admin.course.videos', compact('videos'));
     }
 }

@@ -34,7 +34,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     // Course Watch Page
     Route::get('course/access/{slug}', 'ApiController@course_access');
     Route::get('watch/{course}/{slug}', 'ApiController@lesson_data');
+
+    // course progress
 });
+Route::get('course/progress/{slug}', 'ApiController@course_progress');
 
 // home page
 Route::get('/setting', 'ApiController@setting');

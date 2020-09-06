@@ -15,4 +15,8 @@ class CourseVideo extends Model
     public function section(){
         return $this->belongsTo('App\CourseSection', 'section_id');
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }

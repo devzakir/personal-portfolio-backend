@@ -61,4 +61,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function lessons(){
+        return $this->belongsToMany(CourseVideo::class)->withTimestamps();
+    }
 }

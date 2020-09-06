@@ -20,7 +20,7 @@ class CourseVideoController extends Controller
     {
         $section = CourseSection::find($id);
         if($section){
-            $videos = CourseVideo::where('section_id', $section->id)->get();
+            $videos = CourseVideo::with('course')->where('section_id', $section->id)->latest()->get();
 
             return view('admin.course-video.index', compact(['videos', 'section']));
         }
