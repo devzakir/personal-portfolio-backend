@@ -32,6 +32,7 @@ class CreateCoursesTable extends Migration
             $table->integer('projects')->nullable();
             $table->string('level')->nullable();
             $table->integer('enrollment')->default(0);
+            $table->boolean('published')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('course_categories')->onDelete('cascade');
