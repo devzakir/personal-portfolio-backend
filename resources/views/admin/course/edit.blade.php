@@ -56,13 +56,26 @@
                                 <label for="">Total Projects </label>
                                 <input type="number" min="0" name="projects" class="form-control" placeholder="total projects" value="{{ $course->projects }}">
                             </div>
-                            <div class="form-group">
-                                <label for="level">Course Level </label>
-                                <select name="level" id="level" class="form-control">
-                                    <option value="Beginner" @if($course->level == 'Beginner') selected @endif>Beginner</option>
-                                    <option value="Intermediate" @if($course->level == 'Intermediate') selected @endif>Intermediate</option>
-                                    <option value="Advance" @if($course->level == 'Advance') selected @endif>Advance</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="level">Course Level </label>
+                                        <select name="level" id="level" class="form-control">
+                                            <option value="Beginner" @if($course->level == 'Beginner') selected @endif>Beginner</option>
+                                            <option value="Intermediate" @if($course->level == 'Intermediate') selected @endif>Intermediate</option>
+                                            <option value="Advance" @if($course->level == 'Advance') selected @endif>Advance</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="published">Course Published </label>
+                                        <select name="published" id="published" class="form-control">
+                                            <option value="0" @if(!$course->published) selected @endif>Draft</option>
+                                            <option value="1" @if($course->published) selected @endif>Published</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
