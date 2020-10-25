@@ -74,13 +74,13 @@ class ApiController extends Controller
     }
 
     public function courses(){
-        $courses = Course::with('category')->orderBy('coming_soon', 'asc')->paginate(9);
+        $courses = Course::with('category')->where('published', true)->orderBy('coming_soon', 'asc')->paginate(9);
 
         return response()->json($courses, 200);
     }
 
     public function course($slug){
-        $course = Course::with('category')->where('slug', $slug)->first();
+        $course = Course::with('category')->where('published', true)->where('slug', $slug)->first();
         $sections = CourseSection::with('videos')->where('course_id', $course->id)->get();
         $course->sections = $sections;
 
@@ -207,7 +207,7 @@ class ApiController extends Controller
     }
 
     public function lesson_data($course, $lesson){
-        $course = Course::where('slug', $course)->first();
+        $course = Course::where('slug', $course)->where('published', true)->first();
 
         if($course){
             $lesson = CourseVideo::where('slug', $lesson)->first();
@@ -226,7 +226,7 @@ class ApiController extends Controller
     }
 
     public function course_access($slug){
-        $course = Course::where('slug', $slug)->first();
+        $course = Course::where('slug', $slug)->where('published', true)->first();
         $user = auth('api')->user();
         if($course){
             $order = Order::where('course_id', $course->id)->where('user_id', $user->id)->first();
@@ -242,7 +242,7 @@ class ApiController extends Controller
     }
 
     public function course_progress($slug){
-        $course = Course::where('slug', $slug)->first();
+        $course = Course::where('slug', $slug)->where('published', true)->first();
         $user = auth('api')->user();
 
         if($course){
