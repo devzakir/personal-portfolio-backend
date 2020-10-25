@@ -49,7 +49,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td colspan="4">
+                            <td colspan="5">
                                 <h5 class="text-center pt-4 pb-4">No Sections Found</h5>
                             </td>
                         </tr>

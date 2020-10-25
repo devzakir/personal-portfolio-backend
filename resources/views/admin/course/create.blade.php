@@ -44,7 +44,7 @@
                                 <input type="number" min="0" name="sale_price" class="form-control" placeholder="Enter Sale price">
                             </div>
                             <div class="form-group">
-                                <label for="">Total Course Duration</label>
+                                <label for="">Total Course Duration (Hours)</label>
                                 <input type="number" min="0" name="duration" class="form-control" placeholder="total duration">
                             </div>
                             <div class="form-group">
