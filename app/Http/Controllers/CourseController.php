@@ -70,6 +70,7 @@ class CourseController extends Controller
             'videos' => $request->videos,
             'projects' => $request->projects,
             'level' => $request->level,
+            'published' => $request->published,
         ]);
 
         if($request->coming_soon == "on"){
@@ -145,6 +146,7 @@ class CourseController extends Controller
         $course->videos = $request->videos;
         $course->projects = $request->projects;
         $course->level = $request->level;
+        $course->published = $request->published;
 
         if($request->hasFile('image')){
             $image = $request->image;

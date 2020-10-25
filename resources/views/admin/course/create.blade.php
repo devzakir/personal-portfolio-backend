@@ -55,13 +55,26 @@
                                 <label for="">Total Projects </label>
                                 <input type="number" min="0" name="projects" class="form-control" placeholder="total projects">
                             </div>
-                            <div class="form-group">
-                                <label for="level">Course Level </label>
-                                <select name="level" id="level" class="form-control">
-                                    <option value="Beginner">Beginner</option>
-                                    <option value="Intermediate">Intermediate</option>
-                                    <option value="Advance">Advance</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="level">Course Level </label>
+                                        <select name="level" id="level" class="form-control">
+                                            <option value="Beginner">Beginner</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Advance">Advance</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="published">Course Published </label>
+                                        <select name="published" id="published" class="form-control">
+                                            <option value="0">Draft</option>
+                                            <option value="1">Published</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
